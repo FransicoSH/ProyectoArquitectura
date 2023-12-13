@@ -7,7 +7,7 @@ namespace ProyectoArquitectura_UI.Models
 {
     public class TipoEstados
     {
-       public int TipoEstadoID { get; set; }
+       public string TipoEstadoID { get; set; }
         public string Estado { get; set; }
     }
 }

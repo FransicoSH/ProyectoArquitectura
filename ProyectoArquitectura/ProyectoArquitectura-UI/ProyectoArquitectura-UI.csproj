@@ -163,6 +163,7 @@
     <Compile Include="Models\PersnaView.cs" />
     <Compile Include="Models\RespuestaLogin.cs" />
     <Compile Include="Models\TipoEstados.cs" />
+    <Compile Include="Models\TipoRol.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\UsuariosView.cs" />
     <Compile Include="Permisos\Validacion.cs" />

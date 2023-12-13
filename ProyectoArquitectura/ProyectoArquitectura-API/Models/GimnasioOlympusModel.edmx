@@ -91,6 +91,7 @@
 warning 6002: The table/view 'GimnasioOlympus.CondicionFisica.PersonaDetalleCuerpoView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="PersonaDetalleCuerpoView">
           <Key>
+            <PropertyRef Name="Identificacion" />
             <PropertyRef Name="IdPersona" />
             <PropertyRef Name="PrimerApellido" />
             <PropertyRef Name="SegundoApellido" />
@@ -101,6 +102,7 @@ warning 6002: The table/view 'GimnasioOlympus.CondicionFisica.PersonaDetalleCuer
             <PropertyRef Name="PorcentajeMasaMuscular" />
             <PropertyRef Name="PorcentajeGrasaCorporal" />
           </Key>
+          <Property Name="Identificacion" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="IdPersona" Type="int" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="150" />
           <Property Name="PrimerApellido" Type="varchar" MaxLength="150" Nullable="false" />
@@ -173,37 +175,6 @@ warning 6002: The table/view 'GimnasioOlympus.seguridad.UsuariosView' does not h
           <Property Name="NombreRol" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="250" />
         </EntityType>
-        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
-        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Sp_ActualizarCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="General">
           <Parameter Name="IdCliente" Type="int" Mode="In" />
           <Parameter Name="NumemeroTelefono" Type="varchar" Mode="In" />
@@ -216,7 +187,8 @@ warning 6002: The table/view 'GimnasioOlympus.seguridad.UsuariosView' does not h
         </Function>
         <Function Name="Sp_AcualizarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="General">
           <Parameter Name="IdUsuario" Type="int" Mode="In" />
-          <Parameter Name="TipoEstadoID_NAME" Type="varchar" Mode="In" />
+          <Parameter Name="TipoEstadoID" Type="int" Mode="In" />
+          <Parameter Name="TipoRol_ID" Type="int" Mode="In" />
           <Parameter Name="Password" Type="varchar" Mode="In" />
           <Parameter Name="Mensaje" Type="varchar" Mode="InOut" />
         </Function>
@@ -298,6 +270,7 @@ warning 6002: The table/view 'GimnasioOlympus.seguridad.UsuariosView' does not h
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="seguridad" store:Type="Tables" />
           <EntitySet Name="PersonaDetalleCuerpoView" EntityType="Self.PersonaDetalleCuerpoView" store:Type="Views" store:Schema="CondicionFisica">
             <DefiningQuery>SELECT 
+    [PersonaDetalleCuerpoView].[Identificacion] AS [Identificacion], 
     [PersonaDetalleCuerpoView].[IdPersona] AS [IdPersona], 
     [PersonaDetalleCuerpoView].[Nombre] AS [Nombre], 
     [PersonaDetalleCuerpoView].[PrimerApellido] AS [PrimerApellido], 
@@ -352,6 +325,19 @@ warning 6002: The table/view 'GimnasioOlympus.seguridad.UsuariosView' does not h
     <edmx:ConceptualModels>
       <Schema Namespace="GimnasioOlympusModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="GimnasioOlympusEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DetalleCuerpoUsuarios" EntityType="GimnasioOlympusModel.DetalleCuerpoUsuario" />
+          <EntitySet Name="Personas" EntityType="GimnasioOlympusModel.Persona" />
+          <EntitySet Name="TipoEstadoes" EntityType="GimnasioOlympusModel.TipoEstado" />
+          <EntitySet Name="TipoRols" EntityType="GimnasioOlympusModel.TipoRol" />
+          <EntitySet Name="Menbresias" EntityType="GimnasioOlympusModel.Menbresia" />
+          <EntitySet Name="MenbresiasUsuarios" EntityType="GimnasioOlympusModel.MenbresiasUsuario" />
+          <EntitySet Name="TipoMembresias" EntityType="GimnasioOlympusModel.TipoMembresia" />
+          <EntitySet Name="UsuarioPersonas" EntityType="GimnasioOlympusModel.UsuarioPersona" />
+          <EntitySet Name="Usuarios" EntityType="GimnasioOlympusModel.Usuario" />
+          <EntitySet Name="PersonaDetalleCuerpoViews" EntityType="GimnasioOlympusModel.PersonaDetalleCuerpoView" />
+          <EntitySet Name="PersonasSinUsuarios" EntityType="GimnasioOlympusModel.PersonasSinUsuario" />
+          <EntitySet Name="PersonaViews" EntityType="GimnasioOlympusModel.PersonaView" />
+          <EntitySet Name="UsuariosViews" EntityType="GimnasioOlympusModel.UsuariosView" />
           <FunctionImport Name="Sp_ActualizarCliente">
             <Parameter Name="IdCliente" Mode="In" Type="Int32" />
             <Parameter Name="NumemeroTelefono" Mode="In" Type="String" />
@@ -364,7 +350,8 @@ warning 6002: The table/view 'GimnasioOlympus.seguridad.UsuariosView' does not h
           </FunctionImport>
           <FunctionImport Name="Sp_AcualizarUsuario">
             <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
-            <Parameter Name="TipoEstadoID_NAME" Mode="In" Type="String" />
+            <Parameter Name="TipoEstadoID" Mode="In" Type="Int32" />
+            <Parameter Name="TipoRol_ID" Mode="In" Type="Int32" />
             <Parameter Name="Password" Mode="In" Type="String" />
             <Parameter Name="Mensaje" Mode="InOut" Type="String" />
           </FunctionImport>
@@ -433,53 +420,6 @@ warning 6002: The table/view 'GimnasioOlympus.seguridad.UsuariosView' does not h
           <FunctionImport Name="Sp_GenerarUsername">
             <Parameter Name="IdPersona" Mode="In" Type="Int32" />
             <Parameter Name="UserName" Mode="InOut" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_alterdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_creatediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_dropdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(GimnasioOlympusModel.sp_helpdiagramdefinition_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(GimnasioOlympusModel.sp_helpdiagrams_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_renamediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="new_diagramname" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_upgraddiagrams" />
-          <EntitySet Name="DetalleCuerpoUsuarios" EntityType="GimnasioOlympusModel.DetalleCuerpoUsuario" />
-          <EntitySet Name="Personas" EntityType="GimnasioOlympusModel.Persona" />
-          <EntitySet Name="TipoEstadoes" EntityType="GimnasioOlympusModel.TipoEstado" />
-          <EntitySet Name="TipoRols" EntityType="GimnasioOlympusModel.TipoRol" />
-          <EntitySet Name="Menbresias" EntityType="GimnasioOlympusModel.Menbresia" />
-          <EntitySet Name="MenbresiasUsuarios" EntityType="GimnasioOlympusModel.MenbresiasUsuario" />
-          <EntitySet Name="TipoMembresias" EntityType="GimnasioOlympusModel.TipoMembresia" />
-          <EntitySet Name="UsuarioPersonas" EntityType="GimnasioOlympusModel.UsuarioPersona" />
-          <EntitySet Name="Usuarios" EntityType="GimnasioOlympusModel.Usuario" />
-          <EntitySet Name="PersonaDetalleCuerpoViews" EntityType="GimnasioOlympusModel.PersonaDetalleCuerpoView" />
-          <EntitySet Name="PersonasSinUsuarios" EntityType="GimnasioOlympusModel.PersonasSinUsuario" />
-          <EntitySet Name="PersonaViews" EntityType="GimnasioOlympusModel.PersonaView" />
-          <EntitySet Name="UsuariosViews" EntityType="GimnasioOlympusModel.UsuariosView" />
-          <FunctionImport Name="Sp_EliminarCliente1">
-            <Parameter Name="IdPersona" Mode="In" Type="Int32" />
-            <Parameter Name="Mensaje" Mode="InOut" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
@@ -586,6 +526,7 @@ warning 6002: The table/view 'GimnasioOlympus.seguridad.UsuariosView' does not h
             <PropertyRef Name="Altura" />
             <PropertyRef Name="PorcentajeMasaMuscular" />
             <PropertyRef Name="PorcentajeGrasaCorporal" />
+            <PropertyRef Name="Identificacion" />
           </Key>
           <Property Name="IdPersona" Type="Int32" Nullable="false" />
           <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
@@ -598,6 +539,7 @@ warning 6002: The table/view 'GimnasioOlympus.seguridad.UsuariosView' does not h
           <Property Name="Altura" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
           <Property Name="PorcentajeMasaMuscular" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
           <Property Name="PorcentajeGrasaCorporal" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="Identificacion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="PersonasSinUsuario">
           <Key>
@@ -659,42 +601,6 @@ warning 6002: The table/view 'GimnasioOlympus.seguridad.UsuariosView' does not h
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="GimnasioOlympusModelStoreContainer" CdmEntityContainer="GimnasioOlympusEntities">
-          <FunctionImportMapping FunctionImportName="Sp_ActualizarCliente" FunctionName="GimnasioOlympusModel.Store.Sp_ActualizarCliente" />
-          <FunctionImportMapping FunctionImportName="Sp_AcualizarUsuario" FunctionName="GimnasioOlympusModel.Store.Sp_AcualizarUsuario" />
-          <FunctionImportMapping FunctionImportName="Sp_EliminarUsuario" FunctionName="GimnasioOlympusModel.Store.Sp_EliminarUsuario" />
-          <FunctionImportMapping FunctionImportName="Sp_InsertarPersona" FunctionName="GimnasioOlympusModel.Store.Sp_InsertarPersona" />
-          <FunctionImportMapping FunctionImportName="Sp_InsertarUsuario" FunctionName="GimnasioOlympusModel.Store.Sp_InsertarUsuario" />
-          <FunctionImportMapping FunctionImportName="Sp_EliminarMenbresiasUsuario" FunctionName="GimnasioOlympusModel.Store.Sp_EliminarMenbresiasUsuario" />
-          <FunctionImportMapping FunctionImportName="Sp_EliminarTipoMembresia" FunctionName="GimnasioOlympusModel.Store.Sp_EliminarTipoMembresia" />
-          <FunctionImportMapping FunctionImportName="Sp_InsertarMenbresiasUsuario" FunctionName="GimnasioOlympusModel.Store.Sp_InsertarMenbresiasUsuario" />
-          <FunctionImportMapping FunctionImportName="Sp_InsertarTipoMembresia" FunctionName="GimnasioOlympusModel.Store.Sp_InsertarTipoMembresia" />
-          <FunctionImportMapping FunctionImportName="Sp_ModidicarTipoMembresia" FunctionName="GimnasioOlympusModel.Store.Sp_ModidicarTipoMembresia" />
-          <FunctionImportMapping FunctionImportName="sp_AutenticarUsuario" FunctionName="GimnasioOlympusModel.Store.sp_AutenticarUsuario" />
-          <FunctionImportMapping FunctionImportName="Sp_GenerarUsername" FunctionName="GimnasioOlympusModel.Store.Sp_GenerarUsername" />
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="GimnasioOlympusModel.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="GimnasioOlympusModel.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="GimnasioOlympusModel.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="GimnasioOlympusModel.Store.sp_helpdiagramdefinition">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="GimnasioOlympusModel.sp_helpdiagramdefinition_Result">
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="GimnasioOlympusModel.Store.sp_helpdiagrams">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="GimnasioOlympusModel.sp_helpdiagrams_Result">
-                <ScalarProperty Name="Database" ColumnName="Database" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Owner" ColumnName="Owner" />
-                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="GimnasioOlympusModel.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="GimnasioOlympusModel.Store.sp_upgraddiagrams" />
           <EntitySetMapping Name="DetalleCuerpoUsuarios">
             <EntityTypeMapping TypeName="GimnasioOlympusModel.DetalleCuerpoUsuario">
               <MappingFragment StoreEntitySet="DetalleCuerpoUsuario">
@@ -789,6 +695,7 @@ warning 6002: The table/view 'GimnasioOlympus.seguridad.UsuariosView' does not h
           <EntitySetMapping Name="PersonaDetalleCuerpoViews">
             <EntityTypeMapping TypeName="GimnasioOlympusModel.PersonaDetalleCuerpoView">
               <MappingFragment StoreEntitySet="PersonaDetalleCuerpoView">
+                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
                 <ScalarProperty Name="PorcentajeGrasaCorporal" ColumnName="PorcentajeGrasaCorporal" />
                 <ScalarProperty Name="PorcentajeMasaMuscular" ColumnName="PorcentajeMasaMuscular" />
                 <ScalarProperty Name="Altura" ColumnName="Altura" />
@@ -844,7 +751,19 @@ warning 6002: The table/view 'GimnasioOlympus.seguridad.UsuariosView' does not h
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="Sp_EliminarCliente1" FunctionName="GimnasioOlympusModel.Store.Sp_EliminarCliente" />
+          <FunctionImportMapping FunctionImportName="Sp_ActualizarCliente" FunctionName="GimnasioOlympusModel.Store.Sp_ActualizarCliente" />
+          <FunctionImportMapping FunctionImportName="Sp_AcualizarUsuario" FunctionName="GimnasioOlympusModel.Store.Sp_AcualizarUsuario" />
+          <FunctionImportMapping FunctionImportName="Sp_EliminarCliente" FunctionName="GimnasioOlympusModel.Store.Sp_EliminarCliente" />
+          <FunctionImportMapping FunctionImportName="Sp_EliminarUsuario" FunctionName="GimnasioOlympusModel.Store.Sp_EliminarUsuario" />
+          <FunctionImportMapping FunctionImportName="Sp_InsertarPersona" FunctionName="GimnasioOlympusModel.Store.Sp_InsertarPersona" />
+          <FunctionImportMapping FunctionImportName="Sp_InsertarUsuario" FunctionName="GimnasioOlympusModel.Store.Sp_InsertarUsuario" />
+          <FunctionImportMapping FunctionImportName="Sp_EliminarMenbresiasUsuario" FunctionName="GimnasioOlympusModel.Store.Sp_EliminarMenbresiasUsuario" />
+          <FunctionImportMapping FunctionImportName="Sp_EliminarTipoMembresia" FunctionName="GimnasioOlympusModel.Store.Sp_EliminarTipoMembresia" />
+          <FunctionImportMapping FunctionImportName="Sp_InsertarMenbresiasUsuario" FunctionName="GimnasioOlympusModel.Store.Sp_InsertarMenbresiasUsuario" />
+          <FunctionImportMapping FunctionImportName="Sp_InsertarTipoMembresia" FunctionName="GimnasioOlympusModel.Store.Sp_InsertarTipoMembresia" />
+          <FunctionImportMapping FunctionImportName="Sp_ModidicarTipoMembresia" FunctionName="GimnasioOlympusModel.Store.Sp_ModidicarTipoMembresia" />
+          <FunctionImportMapping FunctionImportName="sp_AutenticarUsuario" FunctionName="GimnasioOlympusModel.Store.sp_AutenticarUsuario" />
+          <FunctionImportMapping FunctionImportName="Sp_GenerarUsername" FunctionName="GimnasioOlympusModel.Store.Sp_GenerarUsername" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -859,7 +778,7 @@ warning 6002: The table/view 'GimnasioOlympus.seguridad.UsuariosView' does not h
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

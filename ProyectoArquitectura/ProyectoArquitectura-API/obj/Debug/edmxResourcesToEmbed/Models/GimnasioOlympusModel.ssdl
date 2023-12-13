@@ -86,6 +86,7 @@
 warning 6002: The table/view 'GimnasioOlympus.CondicionFisica.PersonaDetalleCuerpoView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="PersonaDetalleCuerpoView">
     <Key>
+      <PropertyRef Name="Identificacion" />
       <PropertyRef Name="IdPersona" />
       <PropertyRef Name="PrimerApellido" />
       <PropertyRef Name="SegundoApellido" />
@@ -96,6 +97,7 @@ warning 6002: The table/view 'GimnasioOlympus.CondicionFisica.PersonaDetalleCuer
       <PropertyRef Name="PorcentajeMasaMuscular" />
       <PropertyRef Name="PorcentajeGrasaCorporal" />
     </Key>
+    <Property Name="Identificacion" Type="varchar" MaxLength="150" Nullable="false" />
     <Property Name="IdPersona" Type="int" Nullable="false" />
     <Property Name="Nombre" Type="varchar" MaxLength="150" />
     <Property Name="PrimerApellido" Type="varchar" MaxLength="150" Nullable="false" />
@@ -168,37 +170,6 @@ warning 6002: The table/view 'GimnasioOlympus.seguridad.UsuariosView' does not h
     <Property Name="NombreRol" Type="varchar" MaxLength="150" Nullable="false" />
     <Property Name="Descripcion" Type="varchar" MaxLength="250" />
   </EntityType>
-  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
-  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-    <Parameter Name="version" Type="int" Mode="In" />
-    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-  </Function>
-  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-    <Parameter Name="version" Type="int" Mode="In" />
-    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-  </Function>
-  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-  </Function>
-  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-  </Function>
-  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-  </Function>
-  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
-  </Function>
-  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="Sp_ActualizarCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="General">
     <Parameter Name="IdCliente" Type="int" Mode="In" />
     <Parameter Name="NumemeroTelefono" Type="varchar" Mode="In" />
@@ -211,7 +182,8 @@ warning 6002: The table/view 'GimnasioOlympus.seguridad.UsuariosView' does not h
   </Function>
   <Function Name="Sp_AcualizarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="General">
     <Parameter Name="IdUsuario" Type="int" Mode="In" />
-    <Parameter Name="TipoEstadoID_NAME" Type="varchar" Mode="In" />
+    <Parameter Name="TipoEstadoID" Type="int" Mode="In" />
+    <Parameter Name="TipoRol_ID" Type="int" Mode="In" />
     <Parameter Name="Password" Type="varchar" Mode="In" />
     <Parameter Name="Mensaje" Type="varchar" Mode="InOut" />
   </Function>
@@ -293,6 +265,7 @@ warning 6002: The table/view 'GimnasioOlympus.seguridad.UsuariosView' does not h
     <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="seguridad" store:Type="Tables" />
     <EntitySet Name="PersonaDetalleCuerpoView" EntityType="Self.PersonaDetalleCuerpoView" store:Type="Views" store:Schema="CondicionFisica">
       <DefiningQuery>SELECT 
+    [PersonaDetalleCuerpoView].[Identificacion] AS [Identificacion], 
     [PersonaDetalleCuerpoView].[IdPersona] AS [IdPersona], 
     [PersonaDetalleCuerpoView].[Nombre] AS [Nombre], 
     [PersonaDetalleCuerpoView].[PrimerApellido] AS [PrimerApellido], 

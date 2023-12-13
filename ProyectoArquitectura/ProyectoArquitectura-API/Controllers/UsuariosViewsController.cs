@@ -38,23 +38,30 @@ namespace ProyectoArquitectura_API.Controllers
 
         // PUT: api/UsuariosViews/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutUsuariosView(int id, UsuariosView usuariosView)
+        public IHttpActionResult PutUsuariosView(int id, UsuarioEnty usuariosView)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != usuariosView.UsuarioID)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(usuariosView).State = EntityState.Modified;
-
             try
             {
-                db.SaveChanges();
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                if (id != usuariosView.UsuarioID)
+                {
+                    return BadRequest();
+                }
+                ObjectParameter Result = new ObjectParameter("Mensaje", typeof(string));
+                db.Sp_AcualizarUsuario( 
+                    id,
+                    usuariosView.TipoEstadoID,
+                    usuariosView.TipoRol_ID,
+                    usuariosView.Password,
+                    Result
+                    );
+
+                return Ok(Result);
+
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -66,9 +73,7 @@ namespace ProyectoArquitectura_API.Controllers
                 {
                     throw;
                 }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
+            }       
         }
 
         // POST: api/UsuariosViews

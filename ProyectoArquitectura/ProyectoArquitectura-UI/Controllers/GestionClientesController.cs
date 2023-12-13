@@ -34,8 +34,7 @@ namespace ProyectoArquitectura_UI.Controllers
                 ViewBag.respuesta = respuesta;
             }else
             {
-                TempData["MensajeError"] = $"Hubo un error al procesar la solicitud : {response.ErrorMessage}";
-               
+                TempData["MensajeError"] = $"Hubo un error al procesar la solicitud : {response.ErrorMessage}";               
             }
             return View();
         }
@@ -138,6 +137,10 @@ namespace ProyectoArquitectura_UI.Controllers
                     return RedirectToAction("VistaClientes", "GestionClientes");
                 }
                 TempData["Mensaje"] = resultado;
+            }
+            else
+            {
+                TempData["Mensaje"] ="Consulte a su proveedor de sofware";
             }
 
           

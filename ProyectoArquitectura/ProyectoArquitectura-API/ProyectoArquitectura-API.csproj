@@ -172,6 +172,7 @@
     <Compile Include="Controllers\PersonasController.cs" />
     <Compile Include="Controllers\PersonaViewsController.cs" />
     <Compile Include="Controllers\TipoEstadosController.cs" />
+    <Compile Include="Controllers\TipoRolsController.cs" />
     <Compile Include="Controllers\UsuariosViewsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

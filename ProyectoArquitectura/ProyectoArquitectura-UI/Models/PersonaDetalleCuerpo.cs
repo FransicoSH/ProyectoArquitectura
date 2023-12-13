@@ -7,6 +7,7 @@ namespace ProyectoArquitectura_UI.Models
 {
     public class PersonaDetalleCuerpo
     {
+        public string Identificacion { get; set; }
         public string IdPersona { get; set; }
         public string Nombre { get; set; }
         public string PrimerApellido { get; set; }

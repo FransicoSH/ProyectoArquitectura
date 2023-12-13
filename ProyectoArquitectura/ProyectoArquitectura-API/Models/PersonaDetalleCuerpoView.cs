@@ -25,5 +25,6 @@ namespace ProyectoArquitectura_API.Models
         public decimal Altura { get; set; }
         public decimal PorcentajeMasaMuscular { get; set; }
         public decimal PorcentajeGrasaCorporal { get; set; }
+        public string Identificacion { get; set; }
     }
 }

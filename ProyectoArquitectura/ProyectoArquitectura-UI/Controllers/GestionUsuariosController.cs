@@ -20,11 +20,8 @@ namespace ProyectoArquitectura_UI.Controllers
         [Permisos.Validacion]
         public ActionResult VistaUsuarios()
         {
-
             var request = new RestRequest("/api/UsuariosViews", Method.Get);
-
             var response = client.Execute(request);
-
             if (response.IsSuccessful)
             {
                 string contenido = response.Content;
@@ -38,20 +35,32 @@ namespace ProyectoArquitectura_UI.Controllers
 
         public ActionResult CreaUsuario()
         {
-
             var request = new RestRequest("/api/Clientes", Method.Get);
-
             var response = client.Execute(request);
 
-            if (response.IsSuccessful)
+            var requestEstado = new RestRequest($"/api/TipoEstados/", Method.Get);
+            var responseEstado = client.Execute(requestEstado);
+
+            var requestTipoRols = new RestRequest($"/api/TipoRols/", Method.Get);
+            var responseTipoRols = client.Execute(requestTipoRols);
+
+            if (response.IsSuccessful && responseEstado.IsSuccessful && responseTipoRols.IsSuccessful)
             {
                 string contenido = response.Content;
+                String contenidoEstado = responseEstado.Content;
+                String contenidoTipoRols = responseTipoRols.Content;
+
                 List<PersnaView> respuesta = JsonConvert.DeserializeObject<List<PersnaView>>(contenido);
+                List<TipoEstados> tipoEstados = JsonConvert.DeserializeObject<List<TipoEstados>>((contenidoEstado));
+                List<TipoRol> tipoRols = JsonConvert.DeserializeObject<List<TipoRol>>((contenidoTipoRols));
+
                 ViewBag.respuesta = respuesta;
+                ViewBag.Usuario = respuesta;
+                ViewBag.Estados = tipoEstados;
+                ViewBag.tipoRols = tipoRols;
             }
             return View();
         }
-
 
         public ActionResult EditarUsuario( String IdUsuario)
         {
@@ -60,15 +69,18 @@ namespace ProyectoArquitectura_UI.Controllers
             var request = new RestRequest($"/api/UsuariosViews/{IdUsuario}", Method.Get);
             var response = client.Execute(request);
 
+    
+            var requestTipoRols = new RestRequest($"/api/TipoRols/", Method.Get);
+            var responseTipoRols = client.Execute(requestTipoRols);
 
-            //var requestEstado  = new RestRequest($"/api/TipoEstados/", Method.Get);
-            //var responseEstado = client.Execute(request);
-
-            if (response.IsSuccessful /*&& responseEstado.IsSuccessful*/)
+            if (response.IsSuccessful &&  responseTipoRols.IsSuccessful)
             {
-                string contenido = response.Content;
+                String contenido = response.Content;
+                String contenidoTipoRols = responseTipoRols.Content;
                 UsuariosView respuesta = JsonConvert.DeserializeObject<UsuariosView>(contenido);
+                List<TipoRol> tipoRols = JsonConvert.DeserializeObject<List<TipoRol>>((contenidoTipoRols));
                 ViewBag.Usuario = respuesta;
+                ViewBag.tipoRols = tipoRols;
             }
             return View();
         }
@@ -132,14 +144,6 @@ namespace ProyectoArquitectura_UI.Controllers
             try
             {
                 var request = new RestRequest($"/api/UsuariosViews", Method.Post);
- 
-                UsuarioData.TipoRol_ID = 2;
-                if (UsuarioData.NombreRol != "Cliente")
-                {
-                    UsuarioData.TipoRol_ID = 1;
-                }
-
-
                 request.AddBody(UsuarioData);
                 var response = client.Execute(request);
                 if (response.IsSuccessful)
@@ -150,6 +154,41 @@ namespace ProyectoArquitectura_UI.Controllers
                     {
                      TempData["MensajeError"]= respuesta.Value;
                      return RedirectToAction("CreaUsuario", "GestionUsuarios");
+                    }
+                    TempData["Mensaje"] = respuesta.Value;
+                    return RedirectToAction("VistaUsuarios", "GestionUsuarios");
+                }
+                else
+                {
+                    return new HttpStatusCodeResult((int)response.StatusCode, response.StatusDescription);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Puedes registrar o manejar cualquier excepción aquí
+                return new HttpStatusCodeResult(500, "Error interno del servidor: " + ex.Message);
+            }
+
+        }
+
+
+
+        [HttpPost]
+        public ActionResult Actualizar_Usuario(Usuario UsuarioData)
+        {
+            try
+            {
+                var request = new RestRequest($"/api/UsuariosViews/{UsuarioData.UsuarioID}", Method.Put);
+                request.AddBody(UsuarioData);
+                var response = client.Execute(request);
+                if (response.IsSuccessful)
+                {
+                    string contenido = response.Content;
+                    dynamic respuesta = JsonConvert.DeserializeObject<dynamic>(contenido);
+                    if (respuesta.Value != "Informacion actualizada")
+                    {
+                        TempData["MensajeError"] = respuesta.Value;
+                        return RedirectToAction("Usuario", "GestionUsuarios");
                     }
                     TempData["Mensaje"] = respuesta.Value;
                     return RedirectToAction("VistaUsuarios", "GestionUsuarios");
