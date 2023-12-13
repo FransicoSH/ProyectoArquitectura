@@ -1,0 +1,136 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout_dashboardPrincipal.cshtml";
+}
+
+
+@section head {
+    <!-- Enlaces a DataTables CSS y jQuery -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <link href="~/Content/css/Gestiones/General.css" rel="stylesheet" />
+    <script src="~/Content/javaScript/views/Usuarios.js"></script>
+}
+
+<div class="containerPrincipal">
+
+    @if (TempData["Mensaje"] != null)
+    {
+        <script>
+            $(document).ready(function () {
+                $('#NotificacionModal').modal('show');
+            });
+
+        </script>
+    }
+
+
+    @if (TempData["MensajeError"] != null)
+    {
+        <script>
+            $(document).ready(function () {
+                $('#ErrorModal').modal('show');
+            });
+
+        </script>
+    }
+
+
+    <h4>Gestion de usuarios</h4>
+    <div class="options-container">
+        <button class="btn btn-success" id="CrearUsuario"><i class="fa fa-plus"></i> Crear</button>
+        <button class="btn btn-warning" id="EditarUsuario"><i class="fa fa-edit"></i> Editar</button>
+        <button class="btn btn-danger" id="EliminarUsuario"><i class="fa fa-trash-alt" data-toggle="modal" data-target="#confirmModal"></i> Eliminar</button>
+    </div>
+
+    <div class="table-container">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>UsuarioID</th>
+                    <th>Usuario</th>
+                    <th>Estado</th>
+                    <th>Nombre del Rol</th>
+                    <th>Descripcion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Filas de datos -->
+                @foreach (var Usuarios in ViewBag.respuesta)
+                {
+                    <tr>
+                        <td>@Usuarios.UsuarioID </td>
+                        <td>@Usuarios.UserName </td>
+                        <td>@Usuarios.Estado </td>
+                        <td>@Usuarios.NombreRol </td>
+                        <td>@Usuarios.Descripcion </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<!-- Modal confirmacion -->
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="Eliminar cliente" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estás seguro de que deseas eliminar la selección de esta persona?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="confirmDelete">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Notificaicion -->
+<div class="modal fade" id="NotificacionModal" tabindex="-1" aria-labelledby="Eliminar cliente" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmacion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="mensajeExito">
+                    <p><i class="fa fa-check-circle"></i> @TempData["Mensaje"]</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Error -->
+<div class="modal fade" id="ErrorModal" tabindex="-1" aria-labelledby="Eliminar cliente" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Error en el sistema</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="mensajeExito">
+                    <p><i class="fa-solid fa-triangle-exclamation"></i> @TempData["MensajeError"]</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/javaScript/views/Usuarios.js"></script>
+<script>
+    $('.table').DataTable({
+        retrieve: true,
+        paging: false
+    });
+</script>
+
+

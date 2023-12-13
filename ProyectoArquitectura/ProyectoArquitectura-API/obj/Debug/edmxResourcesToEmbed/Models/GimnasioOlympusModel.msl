@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GimnasioOlympusModelStoreContainer" CdmEntityContainer="GimnasioOlympusEntities">
+    <FunctionImportMapping FunctionImportName="Sp_ActualizarCliente" FunctionName="GimnasioOlympusModel.Store.Sp_ActualizarCliente" />
+    <FunctionImportMapping FunctionImportName="Sp_AcualizarUsuario" FunctionName="GimnasioOlympusModel.Store.Sp_AcualizarUsuario" />
+    <FunctionImportMapping FunctionImportName="Sp_EliminarUsuario" FunctionName="GimnasioOlympusModel.Store.Sp_EliminarUsuario" />
+    <FunctionImportMapping FunctionImportName="Sp_InsertarPersona" FunctionName="GimnasioOlympusModel.Store.Sp_InsertarPersona" />
+    <FunctionImportMapping FunctionImportName="Sp_InsertarUsuario" FunctionName="GimnasioOlympusModel.Store.Sp_InsertarUsuario" />
+    <FunctionImportMapping FunctionImportName="Sp_EliminarMenbresiasUsuario" FunctionName="GimnasioOlympusModel.Store.Sp_EliminarMenbresiasUsuario" />
+    <FunctionImportMapping FunctionImportName="Sp_EliminarTipoMembresia" FunctionName="GimnasioOlympusModel.Store.Sp_EliminarTipoMembresia" />
+    <FunctionImportMapping FunctionImportName="Sp_InsertarMenbresiasUsuario" FunctionName="GimnasioOlympusModel.Store.Sp_InsertarMenbresiasUsuario" />
+    <FunctionImportMapping FunctionImportName="Sp_InsertarTipoMembresia" FunctionName="GimnasioOlympusModel.Store.Sp_InsertarTipoMembresia" />
+    <FunctionImportMapping FunctionImportName="Sp_ModidicarTipoMembresia" FunctionName="GimnasioOlympusModel.Store.Sp_ModidicarTipoMembresia" />
+    <FunctionImportMapping FunctionImportName="sp_AutenticarUsuario" FunctionName="GimnasioOlympusModel.Store.sp_AutenticarUsuario" />
+    <FunctionImportMapping FunctionImportName="Sp_GenerarUsername" FunctionName="GimnasioOlympusModel.Store.Sp_GenerarUsername" />
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="GimnasioOlympusModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="GimnasioOlympusModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="GimnasioOlympusModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="GimnasioOlympusModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GimnasioOlympusModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="GimnasioOlympusModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GimnasioOlympusModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="GimnasioOlympusModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="GimnasioOlympusModel.Store.sp_upgraddiagrams" />
+    <EntitySetMapping Name="DetalleCuerpoUsuarios">
+      <EntityTypeMapping TypeName="GimnasioOlympusModel.DetalleCuerpoUsuario">
+        <MappingFragment StoreEntitySet="DetalleCuerpoUsuario">
+          <ScalarProperty Name="PorcentajeGrasaCorporal" ColumnName="PorcentajeGrasaCorporal" />
+          <ScalarProperty Name="PorcentajeMasaMuscular" ColumnName="PorcentajeMasaMuscular" />
+          <ScalarProperty Name="Altura" ColumnName="Altura" />
+          <ScalarProperty Name="Peso" ColumnName="Peso" />
+          <ScalarProperty Name="DetalleCuerpoID" ColumnName="DetalleCuerpoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Personas">
+      <EntityTypeMapping TypeName="GimnasioOlympusModel.Persona">
+        <MappingFragment StoreEntitySet="Persona">
+          <ScalarProperty Name="NumeroTelefono" ColumnName="NumeroTelefono" />
+          <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+          <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+          <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoEstadoes">
+      <EntityTypeMapping TypeName="GimnasioOlympusModel.TipoEstado">
+        <MappingFragment StoreEntitySet="TipoEstado">
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="TipoEstadoID" ColumnName="TipoEstadoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoRols">
+      <EntityTypeMapping TypeName="GimnasioOlympusModel.TipoRol">
+        <MappingFragment StoreEntitySet="TipoRol">
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="NombreRol" ColumnName="NombreRol" />
+          <ScalarProperty Name="TipoRol_ID" ColumnName="TipoRol_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Menbresias">
+      <EntityTypeMapping TypeName="GimnasioOlympusModel.Menbresia">
+        <MappingFragment StoreEntitySet="Menbresias">
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+          <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
+          <ScalarProperty Name="FechaAdquisicion" ColumnName="FechaAdquisicion" />
+          <ScalarProperty Name="TipoEstadoID" ColumnName="TipoEstadoID" />
+          <ScalarProperty Name="TipoMembresiaID" ColumnName="TipoMembresiaID" />
+          <ScalarProperty Name="MenbresiaID" ColumnName="MenbresiaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MenbresiasUsuarios">
+      <EntityTypeMapping TypeName="GimnasioOlympusModel.MenbresiasUsuario">
+        <MappingFragment StoreEntitySet="MenbresiasUsuarios">
+          <ScalarProperty Name="MenbresiasID" ColumnName="MenbresiasID" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoMembresias">
+      <EntityTypeMapping TypeName="GimnasioOlympusModel.TipoMembresia">
+        <MappingFragment StoreEntitySet="TipoMembresia">
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="TipoMembresiaID" ColumnName="TipoMembresiaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsuarioPersonas">
+      <EntityTypeMapping TypeName="GimnasioOlympusModel.UsuarioPersona">
+        <MappingFragment StoreEntitySet="UsuarioPersona">
+          <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="GimnasioOlympusModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="TipoRol_ID" ColumnName="TipoRol_ID" />
+          <ScalarProperty Name="TipoEstadoID" ColumnName="TipoEstadoID" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PersonaDetalleCuerpoViews">
+      <EntityTypeMapping TypeName="GimnasioOlympusModel.PersonaDetalleCuerpoView">
+        <MappingFragment StoreEntitySet="PersonaDetalleCuerpoView">
+          <ScalarProperty Name="PorcentajeGrasaCorporal" ColumnName="PorcentajeGrasaCorporal" />
+          <ScalarProperty Name="PorcentajeMasaMuscular" ColumnName="PorcentajeMasaMuscular" />
+          <ScalarProperty Name="Altura" ColumnName="Altura" />
+          <ScalarProperty Name="Peso" ColumnName="Peso" />
+          <ScalarProperty Name="NumeroTelefono" ColumnName="NumeroTelefono" />
+          <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+          <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PersonasSinUsuarios">
+      <EntityTypeMapping TypeName="GimnasioOlympusModel.PersonasSinUsuario">
+        <MappingFragment StoreEntitySet="PersonasSinUsuario">
+          <ScalarProperty Name="NumeroTelefono" ColumnName="NumeroTelefono" />
+          <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+          <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+          <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PersonaViews">
+      <EntityTypeMapping TypeName="GimnasioOlympusModel.PersonaView">
+        <MappingFragment StoreEntitySet="PersonaView">
+          <ScalarProperty Name="NumeroTelefono" ColumnName="NumeroTelefono" />
+          <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+          <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsuariosViews">
+      <EntityTypeMapping TypeName="GimnasioOlympusModel.UsuariosView">
+        <MappingFragment StoreEntitySet="UsuariosView">
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="NombreRol" ColumnName="NombreRol" />
+          <ScalarProperty Name="TipoRol_ID" ColumnName="TipoRol_ID" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="TipoEstadoID" ColumnName="TipoEstadoID" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Sp_EliminarCliente1" FunctionName="GimnasioOlympusModel.Store.Sp_EliminarCliente" />
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,185 @@
+﻿@{
+    ViewBag.Title = "CrearCliente";
+    Layout = null;
+}
+
+@if (TempData["MensajeError"] != null)
+{
+    <script>
+        alert("@TempData["MensajeError"]");
+    </script>
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/css/Gestiones/Cliente/Cliente.css" rel="stylesheet" /> 
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+</head>
+
+<body>
+    <div class="Contenedor-From">
+        @using (Html.BeginForm("EnviarActualizacionCliente", "GestionClientes", FormMethod.Post, new { @class = "Form-Cliente" }))
+        {
+            <form class="align-items-center mx-auto Form-Cliente was-validated" id="FormAgregar">
+                <h2>Editar Cliente</h2>
+                <div class="input-group mb-3">
+                    <span class="input-group-text"><i class="fa-solid fa-id-card"></i></span>
+                    <input type="text" class="form-control" name="Identificacion" id="Identificacion" placeholder="Identificacion" required>
+                    <div class="invalid-feedback">Por favor, ingrese un nombre válido.</div>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text"><i class="fa fa-person-circle-plus"></i></span>
+                    <input type="text" class="form-control" name="Nombre" id="Nombre" placeholder="Nombre" required>
+                    <div class="invalid-feedback">Por favor, ingrese un nombre válido.</div>
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group  mb-3">
+                        <span class="input-group-text">Apellidos</span>
+                        <input type="text" class="form-control" name="PrimerApellido" id="PrimerApellido" placeholder="Primer apellido" required>
+                        <input type="text" class="form-control" name="SegundoApellido" id="SegundoApellido" placeholder="Segundo apellido" required>
+                        <div class="invalid-feedback">Por favor, ingrese los apellidos completos</div>
+                    </div>
+                </div>
+
+                <div class="row  mb-3">
+
+                    <div class="col-md-6">
+                        <label for="basic-url" class="form-label">Nombre</label>
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon3"><i class="fa fa-person-circle-plus"></i></span>
+                            <input type="email" class="form-control" name="Nombre" id="Nombre" value="@ViewBag.respuesta.Nombre" readonly required>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="basic-url" class="form-label">Indentificador del cliente</label>
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon3"><i class="fa-solid fa-id-card-clip"></i></span>
+                            <input type="tel" class="form-control" name="IdPersona" id="IdPersona" value="@ViewBag.respuesta.IdPersona">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="input-group  form-floating mb-3">
+                    <span class="input-group-text">Apellidos</span>
+                    <input type="text" class="form-control" name="PrimerApellido" id="PrimerApellido" placeholder="Primer apellido" value="@ViewBag.respuesta.PrimerApellido" readonly required>
+                    <input type="text" class="form-control" name="SegundoApellido" id="SegundoApellido" placeholder="Segundo apellido" value="@ViewBag.respuesta.SegundoApellido" readonly required>
+                    <div class="invalid-feedback">Por favor, ingrese los apellidos completos</div>
+                </div>
+
+                <div class="row  mb-3">
+
+                    <div class="col-md-6">
+                        <label for="basic-url" class="form-label">Correo electronico</label>
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon3">ejemplo@email.com</span>
+                            <input type="email" class="form-control" name="CorreoElectronico" id="CorreoElectronico" value="@ViewBag.respuesta.CorreoElectronico" readonly required>
+                            <div class="invalid-feedback">Por favor, ingrese un Correo Electronico válido</div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="basic-url" class="form-label">Telefono</label>
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon3"><i class="fa-solid fa-phone"></i></span>
+                            <input type="tel" class="form-control" name="NumeroTelefono" id="NumeroTelefono" value="@ViewBag.respuesta.NumeroTelefono">
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-text">Direccion</span>
+                    <textarea class="form-control" name="Direccion" id="Direccion" value="@ViewBag.respuesta.Direccion"></textarea>
+                </div>
+                <br />
+
+                <div class="row">
+                    <h5>Detalle de medidas</h5>
+                </div>
+
+                <div class="row  mb-3">
+                    <div class="col-md-6">
+                        <label for="basic-url" class="form-label">Altura</label>
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon3"><i class="fa-solid fa-plus"></i></span>
+                            <input type="text" class="form-control" name="Altura" id="Altura" onkeydown="filtro()" step="any" value="@ViewBag.respuesta.Altura" required>
+                            <div class="invalid-feedback">Por favor, ingrese una altura válido.</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="basic-url" class="form-label">Peso</label>
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon3"><i class="fa-solid fa-weight-scale"></i></span>
+                            <input type="number" class="form-control" name="Peso" onkeydown="filtro()" id="Peso" step="any" value="@ViewBag.respuesta.Peso" required>
+                            <div class="invalid-feedback">Por favor, ingrese un peso válido.</div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row  mb-3">
+                    <div class="col-md-6">
+                        <label for="basic-url" class="form-label">Porcentaje Masa Muscular</label>
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon3"><i class="fa-solid fa-dumbbell"></i></span>
+                            <input type="text" class="form-control" name="PorcentajeMasaMuscular" id="PorcentajeMasaMuscular" onkeydown="filtro()" step="any" value="@ViewBag.respuesta.PorcentajeMasaMuscular" required>
+                            <div class="invalid-feedback">Por favor, ingrese un Porcentaje Masa Muscular válido.</div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="basic-url" class="form-label">Porcentaje Grasa Corporal</label>
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon3"><i class="fa-solid fa-weight-hanging"></i></span>
+                            <input type="number" class="form-control" name="PorcentajeGrasaCorporal" onkeydown="filtro()" step="any" id="PorcentajeGrasaCorporal" value="@ViewBag.respuesta.PorcentajeGrasaCorporal" required>
+                            <div class="invalid-feedback">Por favor, ingrese un Porcentaje Grasa Corporal válido.</div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row  mb-4 justify-content-end  Btn-content">
+                    <button type="submit" class="btn btn-primary btnGuardar">Guardar</button>
+                    <button type="button" class="btn btn-danger btnGuardar" onclick="redireccionar()">Cancelar</button>
+                </div>
+            </form>
+        }
+    </div>
+    <script>
+     function filtro()
+        {
+            var tecla = event.key;
+            if (!/^\d|[\.,e]$/.test(tecla) && !event.ctrlKey && !event.metaKey)
+            {
+                    event.preventDefault();
+            }
+        }
+
+    function redireccionar() {
+        window.location.href = '@Url.Action("Home", "Dashboard")';
+        }
+    </script>
+    <script src="https://kit.fontawesome.com/49ba607fd0.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/javaScript/views/Editar.js"></script>
+</body>
+
+
+</html>
+
+
+
+
+
+

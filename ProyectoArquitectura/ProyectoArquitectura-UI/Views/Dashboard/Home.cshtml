@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout_dashboardPrincipal.cshtml";
+}
+
+@if (TempData["Mensaje"] != null)
+{
+    <script>
+        alert('@TempData["Mensaje"]');
+    </script>
+}
+
+@section head {
+    <link href="~/Content/css/Dashboard/Home.css" rel="stylesheet" />
+}
+
+<div class="row">
+    <div class="col-md-3 col-sm-3 col-xs-12 gutter">
+        <div class="sales">
+            <h2>Cantidad total de Usuarios </h2>
+            <h3>100</h3>
+        </div>
+        <div class="sales">
+            <h2>Cantidad total de Menbresias </h2>
+            <h3>100</h3>
+        </div>
+    </div>
+
+    @*<div class="col-md-3 col-sm-3 col-xs-12 gutter">
+
+        </div>*@
+
+    <div class="col-md-8 col-sm-8 col-xs-12 gutter">
+        <div class="sales">
+            <h2>Cantidad total de Menbresias adquieridas por Tipo</h2>
+            <br />
+            <br />
+            <table id="tabla-dinamica">
+                <thead>
+                    <tr>
+                        <th>Numero de Menbresia</th>
+                        <th>Nombre de Menbresia</th>
+                        <th>Cantidad</th>
+
+                    </tr>
+
+                    @for (int i = 0; i < 10; i++)
+                    {
+                        <tr>
+                            <td> @i</td>
+                            <td>Nombre @i</td>
+                            <td> @i</td>
+
+                        </tr>
+                    }
+
+
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

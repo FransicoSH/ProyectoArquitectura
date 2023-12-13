@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GimnasioOlympusModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="GimnasioOlympusEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="Sp_ActualizarCliente">
+      <Parameter Name="IdCliente" Mode="In" Type="Int32" />
+      <Parameter Name="NumemeroTelefono" Mode="In" Type="String" />
+      <Parameter Name="Direccion" Mode="In" Type="String" />
+      <Parameter Name="Peso" Mode="In" Type="Decimal" />
+      <Parameter Name="Altura" Mode="In" Type="Decimal" />
+      <Parameter Name="PorcentajeMasaMuscular" Mode="In" Type="Decimal" />
+      <Parameter Name="PorcentajeGrasaCorporal" Mode="In" Type="Decimal" />
+      <Parameter Name="Mensaje" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Sp_AcualizarUsuario">
+      <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+      <Parameter Name="TipoEstadoID_NAME" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="Mensaje" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Sp_EliminarCliente">
+      <Parameter Name="IdPersona" Mode="In" Type="Int32" />
+      <Parameter Name="Mensaje" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Sp_EliminarUsuario">
+      <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+      <Parameter Name="Mensaje" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Sp_InsertarPersona">
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Identificacion" Mode="In" Type="String" />
+      <Parameter Name="PrimerApellido" Mode="In" Type="String" />
+      <Parameter Name="SegundoApellido" Mode="In" Type="String" />
+      <Parameter Name="Direccion" Mode="In" Type="String" />
+      <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+      <Parameter Name="NumeroTelefono" Mode="In" Type="String" />
+      <Parameter Name="Peso" Mode="In" Type="Decimal" />
+      <Parameter Name="Altura" Mode="In" Type="Decimal" />
+      <Parameter Name="PorcentajeMasaMuscular" Mode="In" Type="Decimal" />
+      <Parameter Name="PorcentajeGrasaCorporal" Mode="In" Type="Decimal" />
+      <Parameter Name="Mensaje" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Sp_InsertarUsuario">
+      <Parameter Name="IdPersona" Mode="In" Type="Int32" />
+      <Parameter Name="TipoRol_ID" Mode="In" Type="Int32" />
+      <Parameter Name="UserName" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="Mensaje" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Sp_EliminarMenbresiasUsuario">
+      <Parameter Name="MenbresiaID" Mode="In" Type="Int32" />
+      <Parameter Name="Mensaje" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Sp_EliminarTipoMembresia">
+      <Parameter Name="TipoMembresiaID" Mode="In" Type="Int32" />
+      <Parameter Name="Mensaje" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Sp_InsertarMenbresiasUsuario">
+      <Parameter Name="UsuarioID" Mode="In" Type="Int32" />
+      <Parameter Name="TipoMenbresia" Mode="In" Type="String" />
+      <Parameter Name="TipoEstado" Mode="In" Type="String" />
+      <Parameter Name="FechaAdquisicion" Mode="In" Type="DateTime" />
+      <Parameter Name="FechaVencimiento" Mode="In" Type="DateTime" />
+      <Parameter Name="Mensaje" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Sp_InsertarTipoMembresia">
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Precio" Mode="In" Type="Decimal" />
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
+      <Parameter Name="Mensaje" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Sp_ModidicarTipoMembresia">
+      <Parameter Name="TipoMembresiaID" Mode="In" Type="Int32" />
+      <Parameter Name="Precio" Mode="In" Type="Decimal" />
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
+      <Parameter Name="Mensaje" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_AutenticarUsuario">
+      <Parameter Name="NombreUsuario" Mode="In" Type="String" />
+      <Parameter Name="Contraseña" Mode="In" Type="String" />
+      <Parameter Name="Autenticacion" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Sp_GenerarUsername">
+      <Parameter Name="IdPersona" Mode="In" Type="Int32" />
+      <Parameter Name="UserName" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(GimnasioOlympusModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(GimnasioOlympusModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="DetalleCuerpoUsuarios" EntityType="GimnasioOlympusModel.DetalleCuerpoUsuario" />
+    <EntitySet Name="Personas" EntityType="GimnasioOlympusModel.Persona" />
+    <EntitySet Name="TipoEstadoes" EntityType="GimnasioOlympusModel.TipoEstado" />
+    <EntitySet Name="TipoRols" EntityType="GimnasioOlympusModel.TipoRol" />
+    <EntitySet Name="Menbresias" EntityType="GimnasioOlympusModel.Menbresia" />
+    <EntitySet Name="MenbresiasUsuarios" EntityType="GimnasioOlympusModel.MenbresiasUsuario" />
+    <EntitySet Name="TipoMembresias" EntityType="GimnasioOlympusModel.TipoMembresia" />
+    <EntitySet Name="UsuarioPersonas" EntityType="GimnasioOlympusModel.UsuarioPersona" />
+    <EntitySet Name="Usuarios" EntityType="GimnasioOlympusModel.Usuario" />
+    <EntitySet Name="PersonaDetalleCuerpoViews" EntityType="GimnasioOlympusModel.PersonaDetalleCuerpoView" />
+    <EntitySet Name="PersonasSinUsuarios" EntityType="GimnasioOlympusModel.PersonasSinUsuario" />
+    <EntitySet Name="PersonaViews" EntityType="GimnasioOlympusModel.PersonaView" />
+    <EntitySet Name="UsuariosViews" EntityType="GimnasioOlympusModel.UsuariosView" />
+    <FunctionImport Name="Sp_EliminarCliente1">
+      <Parameter Name="IdPersona" Mode="In" Type="Int32" />
+      <Parameter Name="Mensaje" Mode="InOut" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="DetalleCuerpoUsuario">
+    <Key>
+      <PropertyRef Name="DetalleCuerpoID" />
+    </Key>
+    <Property Name="DetalleCuerpoID" Type="Int32" Nullable="false" />
+    <Property Name="Peso" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+    <Property Name="Altura" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+    <Property Name="PorcentajeMasaMuscular" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+    <Property Name="PorcentajeGrasaCorporal" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+  </EntityType>
+  <EntityType Name="Persona">
+    <Key>
+      <PropertyRef Name="IdPersona" />
+    </Key>
+    <Property Name="IdPersona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Identificacion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="PrimerApellido" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="SegundoApellido" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CorreoElectronico" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="NumeroTelefono" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TipoEstado">
+    <Key>
+      <PropertyRef Name="TipoEstadoID" />
+    </Key>
+    <Property Name="TipoEstadoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Estado" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TipoRol">
+    <Key>
+      <PropertyRef Name="TipoRol_ID" />
+    </Key>
+    <Property Name="TipoRol_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NombreRol" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Menbresia">
+    <Key>
+      <PropertyRef Name="MenbresiaID" />
+    </Key>
+    <Property Name="MenbresiaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TipoMembresiaID" Type="Int32" Nullable="false" />
+    <Property Name="TipoEstadoID" Type="Int32" Nullable="false" />
+    <Property Name="FechaAdquisicion" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="FechaVencimiento" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="UsuarioID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MenbresiasUsuario">
+    <Key>
+      <PropertyRef Name="UsuarioID" />
+    </Key>
+    <Property Name="UsuarioID" Type="Int32" Nullable="false" />
+    <Property Name="MenbresiasID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="TipoMembresia">
+    <Key>
+      <PropertyRef Name="TipoMembresiaID" />
+    </Key>
+    <Property Name="TipoMembresiaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Precio" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="UsuarioPersona">
+    <Key>
+      <PropertyRef Name="UsuarioID" />
+    </Key>
+    <Property Name="UsuarioID" Type="Int32" Nullable="false" />
+    <Property Name="IdPersona" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="UsuarioID" />
+    </Key>
+    <Property Name="UsuarioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TipoEstadoID" Type="Int32" Nullable="false" />
+    <Property Name="TipoRol_ID" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="PersonaDetalleCuerpoView">
+    <Key>
+      <PropertyRef Name="IdPersona" />
+      <PropertyRef Name="PrimerApellido" />
+      <PropertyRef Name="SegundoApellido" />
+      <PropertyRef Name="CorreoElectronico" />
+      <PropertyRef Name="NumeroTelefono" />
+      <PropertyRef Name="Peso" />
+      <PropertyRef Name="Altura" />
+      <PropertyRef Name="PorcentajeMasaMuscular" />
+      <PropertyRef Name="PorcentajeGrasaCorporal" />
+    </Key>
+    <Property Name="IdPersona" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="PrimerApellido" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="SegundoApellido" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CorreoElectronico" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="NumeroTelefono" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Peso" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+    <Property Name="Altura" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+    <Property Name="PorcentajeMasaMuscular" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+    <Property Name="PorcentajeGrasaCorporal" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+  </EntityType>
+  <EntityType Name="PersonasSinUsuario">
+    <Key>
+      <PropertyRef Name="IdPersona" />
+      <PropertyRef Name="Identificacion" />
+      <PropertyRef Name="PrimerApellido" />
+      <PropertyRef Name="SegundoApellido" />
+      <PropertyRef Name="CorreoElectronico" />
+      <PropertyRef Name="NumeroTelefono" />
+    </Key>
+    <Property Name="IdPersona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Identificacion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="PrimerApellido" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="SegundoApellido" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CorreoElectronico" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="NumeroTelefono" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="PersonaView">
+    <Key>
+      <PropertyRef Name="IdPersona" />
+      <PropertyRef Name="Nombre" />
+      <PropertyRef Name="PrimerApellido" />
+      <PropertyRef Name="SegundoApellido" />
+      <PropertyRef Name="CorreoElectronico" />
+      <PropertyRef Name="NumeroTelefono" />
+    </Key>
+    <Property Name="IdPersona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="PrimerApellido" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="SegundoApellido" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CorreoElectronico" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="NumeroTelefono" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="UsuariosView">
+    <Key>
+      <PropertyRef Name="UsuarioID" />
+      <PropertyRef Name="UserName" />
+      <PropertyRef Name="Password" />
+      <PropertyRef Name="TipoEstadoID" />
+      <PropertyRef Name="Estado" />
+      <PropertyRef Name="TipoRol_ID" />
+      <PropertyRef Name="NombreRol" />
+    </Key>
+    <Property Name="UsuarioID" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TipoEstadoID" Type="Int32" Nullable="false" />
+    <Property Name="Estado" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TipoRol_ID" Type="Int32" Nullable="false" />
+    <Property Name="NombreRol" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

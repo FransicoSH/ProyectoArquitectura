@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewBag.Title = "temp";
+    Layout = "~/Views/Shared/_Layout_dashboardPrincipal.cshtml";
+}
+
+<h2>temp</h2>
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link href="~/Content/css/Dashboard/Dashboard.css" rel="stylesheet" />
+    @*<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">*@
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">*@
+    @RenderSection("head", required: false)
+</head>
+<body class="home">
+    <div class="display-table">
+        <div class="row display-table-row">
+            <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box container-fluid" id="navigation">
+                <div class="logo">
+                    <a hef="home.html">
+                        <img src="~/Content/Public/img/usuario.png" alt="merkery_logo" class="hidden-xs hidden-sm">
+                        <img src="~/Content/Public/img/usuario.png" alt="merkery_logo" class="visible-xs visible-sm circle-logo">
+                    </a>
+                </div>
+                <div class="navi ">
+                    <ul>
+                        <li class="active"><a href="@Url.Action("Home", "Dashboard")"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Home</span></a></li>
+                        <li><a href="#"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Gestion de Membresias</span></a></li>
+                        <li><a href="@Url.Action("VistaClientes", "GestionClientes")"><i class="fa fa-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Gestion de Clientes</span></a></li>
+                        <li><a href="@Url.Action("VistaUsuarios", "GestionUsuarios")"><i class="fa fa-users" style="color: #3886fe;" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Gestion de Usuarios</span></a></li>
+                        <li class="statistics-item"><a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Statistics</span></a></li>
+                        <li><a href="#"><i class="fa fa-sign-out" style="--fa-primary-color: #156bfe; --fa-secondary-color: #156bfe;"></i><span class="hidden-xs hidden-sm">Cerrar sesion</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-10 col-sm-11 display-table-cell v-align">
+                <div class="user-dashboard">
+                    <div class="row">
+                        <header>
+                            <div class="col-md-7">
+                                <nav class="navbar-default pull-left">
+                                    <div class="navbar-header">
+                                        <button type="button" class="navbar-toggle collapsed" data-toggle="offcanvas" data-target="#side-menu" aria-expanded="false">
+                                            <span class="sr-only">Toggle navigation</span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                        </button>
+                                    </div>
+                                </nav>
+
+                            </div>
+                            <div class="col-md-5">
+                                <div class="header-rightside">
+                                    <ul class="list-inline header-top pull-right">
+                                        <li class="hidden-xs"><a href="#" class="add-project" data-toggle="modal" data-target="#add_project">Crear Cliente</a></li>
+                                        <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
+                                        <li>
+                                            <a href="#" class="icon-info">
+                                                <i class="fa fa-bell" aria-hidden="true"></i>
+                                                <span class="label label-primary">3</span>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </header>
+                    </div>
+
+                    <!-- Body-->
+                    @RenderBody();
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    @*<script src="https://kit.fontawesome.com/49ba607fd0.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>*@
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <!-- JS de Bootstrap (Requiere jQuery) -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+
+
+</html>

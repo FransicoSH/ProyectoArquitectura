@@ -1,0 +1,871 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GimnasioOlympusModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DetalleCuerpoUsuario">
+          <Key>
+            <PropertyRef Name="DetalleCuerpoID" />
+          </Key>
+          <Property Name="DetalleCuerpoID" Type="int" Nullable="false" />
+          <Property Name="Peso" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Altura" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="PorcentajeMasaMuscular" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="PorcentajeGrasaCorporal" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="IdPersona" />
+          </Key>
+          <Property Name="IdPersona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Identificacion" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="150" />
+          <Property Name="PrimerApellido" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="SegundoApellido" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="200" />
+          <Property Name="CorreoElectronico" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="NumeroTelefono" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoEstado">
+          <Key>
+            <PropertyRef Name="TipoEstadoID" />
+          </Key>
+          <Property Name="TipoEstadoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoRol">
+          <Key>
+            <PropertyRef Name="TipoRol_ID" />
+          </Key>
+          <Property Name="TipoRol_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreRol" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Menbresias">
+          <Key>
+            <PropertyRef Name="MenbresiaID" />
+          </Key>
+          <Property Name="MenbresiaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoMembresiaID" Type="int" Nullable="false" />
+          <Property Name="TipoEstadoID" Type="int" Nullable="false" />
+          <Property Name="FechaAdquisicion" Type="date" Nullable="false" />
+          <Property Name="FechaVencimiento" Type="date" Nullable="false" />
+          <Property Name="UsuarioID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MenbresiasUsuarios">
+          <Key>
+            <PropertyRef Name="UsuarioID" />
+          </Key>
+          <Property Name="UsuarioID" Type="int" Nullable="false" />
+          <Property Name="MenbresiasID" Type="int" />
+        </EntityType>
+        <EntityType Name="TipoMembresia">
+          <Key>
+            <PropertyRef Name="TipoMembresiaID" />
+          </Key>
+          <Property Name="TipoMembresiaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Precio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="UsuarioPersona">
+          <Key>
+            <PropertyRef Name="UsuarioID" />
+          </Key>
+          <Property Name="UsuarioID" Type="int" Nullable="false" />
+          <Property Name="IdPersona" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="UsuarioID" />
+          </Key>
+          <Property Name="UsuarioID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoEstadoID" Type="int" Nullable="false" />
+          <Property Name="TipoRol_ID" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'GimnasioOlympus.CondicionFisica.PersonaDetalleCuerpoView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="PersonaDetalleCuerpoView">
+          <Key>
+            <PropertyRef Name="IdPersona" />
+            <PropertyRef Name="PrimerApellido" />
+            <PropertyRef Name="SegundoApellido" />
+            <PropertyRef Name="CorreoElectronico" />
+            <PropertyRef Name="NumeroTelefono" />
+            <PropertyRef Name="Peso" />
+            <PropertyRef Name="Altura" />
+            <PropertyRef Name="PorcentajeMasaMuscular" />
+            <PropertyRef Name="PorcentajeGrasaCorporal" />
+          </Key>
+          <Property Name="IdPersona" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="150" />
+          <Property Name="PrimerApellido" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="SegundoApellido" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="200" />
+          <Property Name="CorreoElectronico" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="NumeroTelefono" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Peso" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Altura" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="PorcentajeMasaMuscular" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="PorcentajeGrasaCorporal" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'GimnasioOlympus.General.PersonasSinUsuario' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="PersonasSinUsuario">
+          <Key>
+            <PropertyRef Name="IdPersona" />
+            <PropertyRef Name="Identificacion" />
+            <PropertyRef Name="PrimerApellido" />
+            <PropertyRef Name="SegundoApellido" />
+            <PropertyRef Name="CorreoElectronico" />
+            <PropertyRef Name="NumeroTelefono" />
+          </Key>
+          <Property Name="IdPersona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Identificacion" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="150" />
+          <Property Name="PrimerApellido" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="SegundoApellido" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="200" />
+          <Property Name="CorreoElectronico" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="NumeroTelefono" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'GimnasioOlympus.General.PersonaView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="PersonaView">
+          <Key>
+            <PropertyRef Name="IdPersona" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="PrimerApellido" />
+            <PropertyRef Name="SegundoApellido" />
+            <PropertyRef Name="CorreoElectronico" />
+            <PropertyRef Name="NumeroTelefono" />
+          </Key>
+          <Property Name="IdPersona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="PrimerApellido" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="SegundoApellido" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="200" />
+          <Property Name="CorreoElectronico" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="NumeroTelefono" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'GimnasioOlympus.seguridad.UsuariosView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="UsuariosView">
+          <Key>
+            <PropertyRef Name="UsuarioID" />
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="Password" />
+            <PropertyRef Name="TipoEstadoID" />
+            <PropertyRef Name="Estado" />
+            <PropertyRef Name="TipoRol_ID" />
+            <PropertyRef Name="NombreRol" />
+          </Key>
+          <Property Name="UsuarioID" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TipoEstadoID" Type="int" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TipoRol_ID" Type="int" Nullable="false" />
+          <Property Name="NombreRol" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Sp_ActualizarCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="General">
+          <Parameter Name="IdCliente" Type="int" Mode="In" />
+          <Parameter Name="NumemeroTelefono" Type="varchar" Mode="In" />
+          <Parameter Name="Direccion" Type="varchar" Mode="In" />
+          <Parameter Name="Peso" Type="decimal" Mode="In" />
+          <Parameter Name="Altura" Type="decimal" Mode="In" />
+          <Parameter Name="PorcentajeMasaMuscular" Type="decimal" Mode="In" />
+          <Parameter Name="PorcentajeGrasaCorporal" Type="decimal" Mode="In" />
+          <Parameter Name="Mensaje" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="Sp_AcualizarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="General">
+          <Parameter Name="IdUsuario" Type="int" Mode="In" />
+          <Parameter Name="TipoEstadoID_NAME" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+          <Parameter Name="Mensaje" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="Sp_EliminarCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="General">
+          <Parameter Name="IdPersona" Type="int" Mode="In" />
+          <Parameter Name="Mensaje" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="Sp_EliminarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="General">
+          <Parameter Name="IdUsuario" Type="int" Mode="In" />
+          <Parameter Name="Mensaje" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="Sp_InsertarPersona" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="General">
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="Identificacion" Type="nvarchar" Mode="In" />
+          <Parameter Name="PrimerApellido" Type="nvarchar" Mode="In" />
+          <Parameter Name="SegundoApellido" Type="nvarchar" Mode="In" />
+          <Parameter Name="Direccion" Type="nvarchar" Mode="In" />
+          <Parameter Name="CorreoElectronico" Type="nvarchar" Mode="In" />
+          <Parameter Name="NumeroTelefono" Type="nvarchar" Mode="In" />
+          <Parameter Name="Peso" Type="decimal" Mode="In" />
+          <Parameter Name="Altura" Type="decimal" Mode="In" />
+          <Parameter Name="PorcentajeMasaMuscular" Type="decimal" Mode="In" />
+          <Parameter Name="PorcentajeGrasaCorporal" Type="decimal" Mode="In" />
+          <Parameter Name="Mensaje" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="Sp_InsertarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="General">
+          <Parameter Name="IdPersona" Type="int" Mode="In" />
+          <Parameter Name="TipoRol_ID" Type="int" Mode="In" />
+          <Parameter Name="UserName" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+          <Parameter Name="Mensaje" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="Sp_EliminarMenbresiasUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="membresia">
+          <Parameter Name="MenbresiaID" Type="int" Mode="In" />
+          <Parameter Name="Mensaje" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="Sp_EliminarTipoMembresia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="membresia">
+          <Parameter Name="TipoMembresiaID" Type="int" Mode="In" />
+          <Parameter Name="Mensaje" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="Sp_InsertarMenbresiasUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="membresia">
+          <Parameter Name="UsuarioID" Type="int" Mode="In" />
+          <Parameter Name="TipoMenbresia" Type="varchar" Mode="In" />
+          <Parameter Name="TipoEstado" Type="varchar" Mode="In" />
+          <Parameter Name="FechaAdquisicion" Type="date" Mode="In" />
+          <Parameter Name="FechaVencimiento" Type="date" Mode="In" />
+          <Parameter Name="Mensaje" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="Sp_InsertarTipoMembresia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="membresia">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Precio" Type="decimal" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="Mensaje" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="Sp_ModidicarTipoMembresia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="membresia">
+          <Parameter Name="TipoMembresiaID" Type="int" Mode="In" />
+          <Parameter Name="Precio" Type="decimal" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="Mensaje" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="sp_AutenticarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="seguridad">
+          <Parameter Name="NombreUsuario" Type="nvarchar" Mode="In" />
+          <Parameter Name="Contraseña" Type="nvarchar" Mode="In" />
+          <Parameter Name="Autenticacion" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="Sp_GenerarUsername" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="seguridad">
+          <Parameter Name="IdPersona" Type="int" Mode="In" />
+          <Parameter Name="UserName" Type="varchar" Mode="InOut" />
+        </Function>
+        <EntityContainer Name="GimnasioOlympusModelStoreContainer">
+          <EntitySet Name="DetalleCuerpoUsuario" EntityType="Self.DetalleCuerpoUsuario" Schema="CondicionFisica" store:Type="Tables" />
+          <EntitySet Name="Persona" EntityType="Self.Persona" Schema="General" store:Type="Tables" />
+          <EntitySet Name="TipoEstado" EntityType="Self.TipoEstado" Schema="General" store:Type="Tables" />
+          <EntitySet Name="TipoRol" EntityType="Self.TipoRol" Schema="General" store:Type="Tables" />
+          <EntitySet Name="Menbresias" EntityType="Self.Menbresias" Schema="membresia" store:Type="Tables" />
+          <EntitySet Name="MenbresiasUsuarios" EntityType="Self.MenbresiasUsuarios" Schema="membresia" store:Type="Tables" />
+          <EntitySet Name="TipoMembresia" EntityType="Self.TipoMembresia" Schema="membresia" store:Type="Tables" />
+          <EntitySet Name="UsuarioPersona" EntityType="Self.UsuarioPersona" Schema="seguridad" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="seguridad" store:Type="Tables" />
+          <EntitySet Name="PersonaDetalleCuerpoView" EntityType="Self.PersonaDetalleCuerpoView" store:Type="Views" store:Schema="CondicionFisica">
+            <DefiningQuery>SELECT 
+    [PersonaDetalleCuerpoView].[IdPersona] AS [IdPersona], 
+    [PersonaDetalleCuerpoView].[Nombre] AS [Nombre], 
+    [PersonaDetalleCuerpoView].[PrimerApellido] AS [PrimerApellido], 
+    [PersonaDetalleCuerpoView].[SegundoApellido] AS [SegundoApellido], 
+    [PersonaDetalleCuerpoView].[Direccion] AS [Direccion], 
+    [PersonaDetalleCuerpoView].[CorreoElectronico] AS [CorreoElectronico], 
+    [PersonaDetalleCuerpoView].[NumeroTelefono] AS [NumeroTelefono], 
+    [PersonaDetalleCuerpoView].[Peso] AS [Peso], 
+    [PersonaDetalleCuerpoView].[Altura] AS [Altura], 
+    [PersonaDetalleCuerpoView].[PorcentajeMasaMuscular] AS [PorcentajeMasaMuscular], 
+    [PersonaDetalleCuerpoView].[PorcentajeGrasaCorporal] AS [PorcentajeGrasaCorporal]
+    FROM [CondicionFisica].[PersonaDetalleCuerpoView] AS [PersonaDetalleCuerpoView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PersonasSinUsuario" EntityType="Self.PersonasSinUsuario" store:Type="Views" store:Schema="General">
+            <DefiningQuery>SELECT 
+    [PersonasSinUsuario].[IdPersona] AS [IdPersona], 
+    [PersonasSinUsuario].[Identificacion] AS [Identificacion], 
+    [PersonasSinUsuario].[Nombre] AS [Nombre], 
+    [PersonasSinUsuario].[PrimerApellido] AS [PrimerApellido], 
+    [PersonasSinUsuario].[SegundoApellido] AS [SegundoApellido], 
+    [PersonasSinUsuario].[Direccion] AS [Direccion], 
+    [PersonasSinUsuario].[CorreoElectronico] AS [CorreoElectronico], 
+    [PersonasSinUsuario].[NumeroTelefono] AS [NumeroTelefono]
+    FROM [General].[PersonasSinUsuario] AS [PersonasSinUsuario]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PersonaView" EntityType="Self.PersonaView" store:Type="Views" store:Schema="General">
+            <DefiningQuery>SELECT 
+    [PersonaView].[IdPersona] AS [IdPersona], 
+    [PersonaView].[Nombre] AS [Nombre], 
+    [PersonaView].[PrimerApellido] AS [PrimerApellido], 
+    [PersonaView].[SegundoApellido] AS [SegundoApellido], 
+    [PersonaView].[Direccion] AS [Direccion], 
+    [PersonaView].[CorreoElectronico] AS [CorreoElectronico], 
+    [PersonaView].[NumeroTelefono] AS [NumeroTelefono]
+    FROM [General].[PersonaView] AS [PersonaView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="UsuariosView" EntityType="Self.UsuariosView" store:Type="Views" store:Schema="seguridad">
+            <DefiningQuery>SELECT 
+    [UsuariosView].[UsuarioID] AS [UsuarioID], 
+    [UsuariosView].[UserName] AS [UserName], 
+    [UsuariosView].[Password] AS [Password], 
+    [UsuariosView].[TipoEstadoID] AS [TipoEstadoID], 
+    [UsuariosView].[Estado] AS [Estado], 
+    [UsuariosView].[TipoRol_ID] AS [TipoRol_ID], 
+    [UsuariosView].[NombreRol] AS [NombreRol], 
+    [UsuariosView].[Descripcion] AS [Descripcion]
+    FROM [seguridad].[UsuariosView] AS [UsuariosView]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GimnasioOlympusModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="GimnasioOlympusEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="Sp_ActualizarCliente">
+            <Parameter Name="IdCliente" Mode="In" Type="Int32" />
+            <Parameter Name="NumemeroTelefono" Mode="In" Type="String" />
+            <Parameter Name="Direccion" Mode="In" Type="String" />
+            <Parameter Name="Peso" Mode="In" Type="Decimal" />
+            <Parameter Name="Altura" Mode="In" Type="Decimal" />
+            <Parameter Name="PorcentajeMasaMuscular" Mode="In" Type="Decimal" />
+            <Parameter Name="PorcentajeGrasaCorporal" Mode="In" Type="Decimal" />
+            <Parameter Name="Mensaje" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_AcualizarUsuario">
+            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="TipoEstadoID_NAME" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="Mensaje" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_EliminarCliente">
+            <Parameter Name="IdPersona" Mode="In" Type="Int32" />
+            <Parameter Name="Mensaje" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_EliminarUsuario">
+            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="Mensaje" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_InsertarPersona">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Identificacion" Mode="In" Type="String" />
+            <Parameter Name="PrimerApellido" Mode="In" Type="String" />
+            <Parameter Name="SegundoApellido" Mode="In" Type="String" />
+            <Parameter Name="Direccion" Mode="In" Type="String" />
+            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+            <Parameter Name="NumeroTelefono" Mode="In" Type="String" />
+            <Parameter Name="Peso" Mode="In" Type="Decimal" />
+            <Parameter Name="Altura" Mode="In" Type="Decimal" />
+            <Parameter Name="PorcentajeMasaMuscular" Mode="In" Type="Decimal" />
+            <Parameter Name="PorcentajeGrasaCorporal" Mode="In" Type="Decimal" />
+            <Parameter Name="Mensaje" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_InsertarUsuario">
+            <Parameter Name="IdPersona" Mode="In" Type="Int32" />
+            <Parameter Name="TipoRol_ID" Mode="In" Type="Int32" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="Mensaje" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_EliminarMenbresiasUsuario">
+            <Parameter Name="MenbresiaID" Mode="In" Type="Int32" />
+            <Parameter Name="Mensaje" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_EliminarTipoMembresia">
+            <Parameter Name="TipoMembresiaID" Mode="In" Type="Int32" />
+            <Parameter Name="Mensaje" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_InsertarMenbresiasUsuario">
+            <Parameter Name="UsuarioID" Mode="In" Type="Int32" />
+            <Parameter Name="TipoMenbresia" Mode="In" Type="String" />
+            <Parameter Name="TipoEstado" Mode="In" Type="String" />
+            <Parameter Name="FechaAdquisicion" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaVencimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="Mensaje" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_InsertarTipoMembresia">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Precio" Mode="In" Type="Decimal" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Mensaje" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_ModidicarTipoMembresia">
+            <Parameter Name="TipoMembresiaID" Mode="In" Type="Int32" />
+            <Parameter Name="Precio" Mode="In" Type="Decimal" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Mensaje" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_AutenticarUsuario">
+            <Parameter Name="NombreUsuario" Mode="In" Type="String" />
+            <Parameter Name="Contraseña" Mode="In" Type="String" />
+            <Parameter Name="Autenticacion" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_GenerarUsername">
+            <Parameter Name="IdPersona" Mode="In" Type="Int32" />
+            <Parameter Name="UserName" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(GimnasioOlympusModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(GimnasioOlympusModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="DetalleCuerpoUsuarios" EntityType="GimnasioOlympusModel.DetalleCuerpoUsuario" />
+          <EntitySet Name="Personas" EntityType="GimnasioOlympusModel.Persona" />
+          <EntitySet Name="TipoEstadoes" EntityType="GimnasioOlympusModel.TipoEstado" />
+          <EntitySet Name="TipoRols" EntityType="GimnasioOlympusModel.TipoRol" />
+          <EntitySet Name="Menbresias" EntityType="GimnasioOlympusModel.Menbresia" />
+          <EntitySet Name="MenbresiasUsuarios" EntityType="GimnasioOlympusModel.MenbresiasUsuario" />
+          <EntitySet Name="TipoMembresias" EntityType="GimnasioOlympusModel.TipoMembresia" />
+          <EntitySet Name="UsuarioPersonas" EntityType="GimnasioOlympusModel.UsuarioPersona" />
+          <EntitySet Name="Usuarios" EntityType="GimnasioOlympusModel.Usuario" />
+          <EntitySet Name="PersonaDetalleCuerpoViews" EntityType="GimnasioOlympusModel.PersonaDetalleCuerpoView" />
+          <EntitySet Name="PersonasSinUsuarios" EntityType="GimnasioOlympusModel.PersonasSinUsuario" />
+          <EntitySet Name="PersonaViews" EntityType="GimnasioOlympusModel.PersonaView" />
+          <EntitySet Name="UsuariosViews" EntityType="GimnasioOlympusModel.UsuariosView" />
+          <FunctionImport Name="Sp_EliminarCliente1">
+            <Parameter Name="IdPersona" Mode="In" Type="Int32" />
+            <Parameter Name="Mensaje" Mode="InOut" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="DetalleCuerpoUsuario">
+          <Key>
+            <PropertyRef Name="DetalleCuerpoID" />
+          </Key>
+          <Property Name="DetalleCuerpoID" Type="Int32" Nullable="false" />
+          <Property Name="Peso" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="Altura" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="PorcentajeMasaMuscular" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="PorcentajeGrasaCorporal" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="IdPersona" />
+          </Key>
+          <Property Name="IdPersona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Identificacion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="PrimerApellido" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="SegundoApellido" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CorreoElectronico" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="NumeroTelefono" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TipoEstado">
+          <Key>
+            <PropertyRef Name="TipoEstadoID" />
+          </Key>
+          <Property Name="TipoEstadoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TipoRol">
+          <Key>
+            <PropertyRef Name="TipoRol_ID" />
+          </Key>
+          <Property Name="TipoRol_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreRol" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Menbresia">
+          <Key>
+            <PropertyRef Name="MenbresiaID" />
+          </Key>
+          <Property Name="MenbresiaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoMembresiaID" Type="Int32" Nullable="false" />
+          <Property Name="TipoEstadoID" Type="Int32" Nullable="false" />
+          <Property Name="FechaAdquisicion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaVencimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UsuarioID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MenbresiasUsuario">
+          <Key>
+            <PropertyRef Name="UsuarioID" />
+          </Key>
+          <Property Name="UsuarioID" Type="Int32" Nullable="false" />
+          <Property Name="MenbresiasID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TipoMembresia">
+          <Key>
+            <PropertyRef Name="TipoMembresiaID" />
+          </Key>
+          <Property Name="TipoMembresiaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Precio" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="UsuarioPersona">
+          <Key>
+            <PropertyRef Name="UsuarioID" />
+          </Key>
+          <Property Name="UsuarioID" Type="Int32" Nullable="false" />
+          <Property Name="IdPersona" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="UsuarioID" />
+          </Key>
+          <Property Name="UsuarioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoEstadoID" Type="Int32" Nullable="false" />
+          <Property Name="TipoRol_ID" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PersonaDetalleCuerpoView">
+          <Key>
+            <PropertyRef Name="IdPersona" />
+            <PropertyRef Name="PrimerApellido" />
+            <PropertyRef Name="SegundoApellido" />
+            <PropertyRef Name="CorreoElectronico" />
+            <PropertyRef Name="NumeroTelefono" />
+            <PropertyRef Name="Peso" />
+            <PropertyRef Name="Altura" />
+            <PropertyRef Name="PorcentajeMasaMuscular" />
+            <PropertyRef Name="PorcentajeGrasaCorporal" />
+          </Key>
+          <Property Name="IdPersona" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="PrimerApellido" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="SegundoApellido" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CorreoElectronico" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="NumeroTelefono" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Peso" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="Altura" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="PorcentajeMasaMuscular" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="PorcentajeGrasaCorporal" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="PersonasSinUsuario">
+          <Key>
+            <PropertyRef Name="IdPersona" />
+            <PropertyRef Name="Identificacion" />
+            <PropertyRef Name="PrimerApellido" />
+            <PropertyRef Name="SegundoApellido" />
+            <PropertyRef Name="CorreoElectronico" />
+            <PropertyRef Name="NumeroTelefono" />
+          </Key>
+          <Property Name="IdPersona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Identificacion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="PrimerApellido" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="SegundoApellido" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CorreoElectronico" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="NumeroTelefono" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PersonaView">
+          <Key>
+            <PropertyRef Name="IdPersona" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="PrimerApellido" />
+            <PropertyRef Name="SegundoApellido" />
+            <PropertyRef Name="CorreoElectronico" />
+            <PropertyRef Name="NumeroTelefono" />
+          </Key>
+          <Property Name="IdPersona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="PrimerApellido" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="SegundoApellido" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CorreoElectronico" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="NumeroTelefono" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="UsuariosView">
+          <Key>
+            <PropertyRef Name="UsuarioID" />
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="Password" />
+            <PropertyRef Name="TipoEstadoID" />
+            <PropertyRef Name="Estado" />
+            <PropertyRef Name="TipoRol_ID" />
+            <PropertyRef Name="NombreRol" />
+          </Key>
+          <Property Name="UsuarioID" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TipoEstadoID" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TipoRol_ID" Type="Int32" Nullable="false" />
+          <Property Name="NombreRol" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GimnasioOlympusModelStoreContainer" CdmEntityContainer="GimnasioOlympusEntities">
+          <FunctionImportMapping FunctionImportName="Sp_ActualizarCliente" FunctionName="GimnasioOlympusModel.Store.Sp_ActualizarCliente" />
+          <FunctionImportMapping FunctionImportName="Sp_AcualizarUsuario" FunctionName="GimnasioOlympusModel.Store.Sp_AcualizarUsuario" />
+          <FunctionImportMapping FunctionImportName="Sp_EliminarUsuario" FunctionName="GimnasioOlympusModel.Store.Sp_EliminarUsuario" />
+          <FunctionImportMapping FunctionImportName="Sp_InsertarPersona" FunctionName="GimnasioOlympusModel.Store.Sp_InsertarPersona" />
+          <FunctionImportMapping FunctionImportName="Sp_InsertarUsuario" FunctionName="GimnasioOlympusModel.Store.Sp_InsertarUsuario" />
+          <FunctionImportMapping FunctionImportName="Sp_EliminarMenbresiasUsuario" FunctionName="GimnasioOlympusModel.Store.Sp_EliminarMenbresiasUsuario" />
+          <FunctionImportMapping FunctionImportName="Sp_EliminarTipoMembresia" FunctionName="GimnasioOlympusModel.Store.Sp_EliminarTipoMembresia" />
+          <FunctionImportMapping FunctionImportName="Sp_InsertarMenbresiasUsuario" FunctionName="GimnasioOlympusModel.Store.Sp_InsertarMenbresiasUsuario" />
+          <FunctionImportMapping FunctionImportName="Sp_InsertarTipoMembresia" FunctionName="GimnasioOlympusModel.Store.Sp_InsertarTipoMembresia" />
+          <FunctionImportMapping FunctionImportName="Sp_ModidicarTipoMembresia" FunctionName="GimnasioOlympusModel.Store.Sp_ModidicarTipoMembresia" />
+          <FunctionImportMapping FunctionImportName="sp_AutenticarUsuario" FunctionName="GimnasioOlympusModel.Store.sp_AutenticarUsuario" />
+          <FunctionImportMapping FunctionImportName="Sp_GenerarUsername" FunctionName="GimnasioOlympusModel.Store.Sp_GenerarUsername" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="GimnasioOlympusModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="GimnasioOlympusModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="GimnasioOlympusModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="GimnasioOlympusModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GimnasioOlympusModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="GimnasioOlympusModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GimnasioOlympusModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="GimnasioOlympusModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="GimnasioOlympusModel.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="DetalleCuerpoUsuarios">
+            <EntityTypeMapping TypeName="GimnasioOlympusModel.DetalleCuerpoUsuario">
+              <MappingFragment StoreEntitySet="DetalleCuerpoUsuario">
+                <ScalarProperty Name="PorcentajeGrasaCorporal" ColumnName="PorcentajeGrasaCorporal" />
+                <ScalarProperty Name="PorcentajeMasaMuscular" ColumnName="PorcentajeMasaMuscular" />
+                <ScalarProperty Name="Altura" ColumnName="Altura" />
+                <ScalarProperty Name="Peso" ColumnName="Peso" />
+                <ScalarProperty Name="DetalleCuerpoID" ColumnName="DetalleCuerpoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personas">
+            <EntityTypeMapping TypeName="GimnasioOlympusModel.Persona">
+              <MappingFragment StoreEntitySet="Persona">
+                <ScalarProperty Name="NumeroTelefono" ColumnName="NumeroTelefono" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoEstadoes">
+            <EntityTypeMapping TypeName="GimnasioOlympusModel.TipoEstado">
+              <MappingFragment StoreEntitySet="TipoEstado">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="TipoEstadoID" ColumnName="TipoEstadoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoRols">
+            <EntityTypeMapping TypeName="GimnasioOlympusModel.TipoRol">
+              <MappingFragment StoreEntitySet="TipoRol">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="NombreRol" ColumnName="NombreRol" />
+                <ScalarProperty Name="TipoRol_ID" ColumnName="TipoRol_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menbresias">
+            <EntityTypeMapping TypeName="GimnasioOlympusModel.Menbresia">
+              <MappingFragment StoreEntitySet="Menbresias">
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+                <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
+                <ScalarProperty Name="FechaAdquisicion" ColumnName="FechaAdquisicion" />
+                <ScalarProperty Name="TipoEstadoID" ColumnName="TipoEstadoID" />
+                <ScalarProperty Name="TipoMembresiaID" ColumnName="TipoMembresiaID" />
+                <ScalarProperty Name="MenbresiaID" ColumnName="MenbresiaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MenbresiasUsuarios">
+            <EntityTypeMapping TypeName="GimnasioOlympusModel.MenbresiasUsuario">
+              <MappingFragment StoreEntitySet="MenbresiasUsuarios">
+                <ScalarProperty Name="MenbresiasID" ColumnName="MenbresiasID" />
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoMembresias">
+            <EntityTypeMapping TypeName="GimnasioOlympusModel.TipoMembresia">
+              <MappingFragment StoreEntitySet="TipoMembresia">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="TipoMembresiaID" ColumnName="TipoMembresiaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsuarioPersonas">
+            <EntityTypeMapping TypeName="GimnasioOlympusModel.UsuarioPersona">
+              <MappingFragment StoreEntitySet="UsuarioPersona">
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="GimnasioOlympusModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="TipoRol_ID" ColumnName="TipoRol_ID" />
+                <ScalarProperty Name="TipoEstadoID" ColumnName="TipoEstadoID" />
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonaDetalleCuerpoViews">
+            <EntityTypeMapping TypeName="GimnasioOlympusModel.PersonaDetalleCuerpoView">
+              <MappingFragment StoreEntitySet="PersonaDetalleCuerpoView">
+                <ScalarProperty Name="PorcentajeGrasaCorporal" ColumnName="PorcentajeGrasaCorporal" />
+                <ScalarProperty Name="PorcentajeMasaMuscular" ColumnName="PorcentajeMasaMuscular" />
+                <ScalarProperty Name="Altura" ColumnName="Altura" />
+                <ScalarProperty Name="Peso" ColumnName="Peso" />
+                <ScalarProperty Name="NumeroTelefono" ColumnName="NumeroTelefono" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonasSinUsuarios">
+            <EntityTypeMapping TypeName="GimnasioOlympusModel.PersonasSinUsuario">
+              <MappingFragment StoreEntitySet="PersonasSinUsuario">
+                <ScalarProperty Name="NumeroTelefono" ColumnName="NumeroTelefono" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonaViews">
+            <EntityTypeMapping TypeName="GimnasioOlympusModel.PersonaView">
+              <MappingFragment StoreEntitySet="PersonaView">
+                <ScalarProperty Name="NumeroTelefono" ColumnName="NumeroTelefono" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsuariosViews">
+            <EntityTypeMapping TypeName="GimnasioOlympusModel.UsuariosView">
+              <MappingFragment StoreEntitySet="UsuariosView">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="NombreRol" ColumnName="NombreRol" />
+                <ScalarProperty Name="TipoRol_ID" ColumnName="TipoRol_ID" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="TipoEstadoID" ColumnName="TipoEstadoID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Sp_EliminarCliente1" FunctionName="GimnasioOlympusModel.Store.Sp_EliminarCliente" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

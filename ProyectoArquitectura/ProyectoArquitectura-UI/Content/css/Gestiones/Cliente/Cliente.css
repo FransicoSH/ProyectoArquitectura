@@ -1,0 +1,88 @@
+﻿body {
+    background-color: gainsboro !important; 
+}
+
+.Form-Cliente {
+    margin: 0 auto;
+    padding: 30px;
+    background-color: white; /* Color de fondo similar a macOS */
+    border: 1px solid #d1d1d1; /* Borde del formulario */
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+/*.form-control {
+    margin-bottom: 15px;
+    border: 1px solid #d1d1d1;*/ /* Borde del campo de entrada */
+    /*border-radius: 5px;
+    padding: 10px;
+    width:100% !important;
+  
+}*/
+
+.btnGuardar {
+    margin-right: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px 15px;
+}
+
+a {
+    color: #007bff;
+}
+
+
+#Direccion {
+    height: 172px;
+}
+
+
+.Contenedor-From{
+    margin-top: 20px;
+    padding:30px;
+    width:100%;
+    height:100%;
+}
+
+
+h2 {
+    text-align: center;
+    color: rgb(0, 97, 144) !important;
+    font-family: sans-serif !important;
+    margin-bottom: 15px !important;
+    height: 50px;
+    border-bottom: 2px solid #000000;
+}
+
+
+/* estilos.css */
+
+
+
+.table-container {
+    margin-bottom: 20px;
+}
+
+/* estilos.css */
+
+.table-container {
+    margin-top: 20px;
+}
+
+.Form-Cliente {
+    margin-top: 20px;
+}
+
+.table-header {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Otros estilos según sea necesario */

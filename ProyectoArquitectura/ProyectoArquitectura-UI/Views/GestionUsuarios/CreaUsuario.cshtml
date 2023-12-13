@@ -1,0 +1,177 @@
+﻿@{
+    ViewBag.Title = "CrearCliente";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <link href="~/Content/css/Gestiones/Formularios.css" rel="stylesheet" />
+    <link href="~/Content/css/Gestiones/General.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+</head>
+
+<body>
+    <div class="Contenedor-From">
+        @using (Html.BeginForm("Crear_Usuario", "GestionUsuarios", FormMethod.Post, new { @class = "Form-Main was-validated ", id = "FormAgregar" }))
+        {
+            <h2>Crear Cliente</h2>
+            <form  id="FormAgregar">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Seleccione un cliente: </label>                        
+                        <div class=" contenerdo-Buscar mb-3 ">
+                            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" data-bs-toggle="modal" data-bs-target="#ClienteUsuariosModal"> <i class="material-icons">add</i>  </button>
+                            <input type="text" class="form-control form-check" style="width:50px;" name="Idpersona" id="Idpersona" readonly required>
+                            <input type="text" class="form-control form-check" name="Nombre" id="Nombre" readonly required>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <label class="form-label">State</label>
+                        <input type="text" class="form-control" name="NombreRol" onkeydown="filtro()" step="any" id="NombreRol" value="Cliente" readonly required>
+                    </div>
+                </div>
+
+                <div class="row  mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Usuario</label>
+                        <div class="input-group ">
+                            <span class="input-group-text" id="basic-addon3"><i class="fa-solid fa-user"></i></span>
+                            <input type="text" class="form-control" name="UserName" id="UserName" onkeydown="filtro()" step="any" readonly required>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Contraseña</label>
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon3"><i class="fa-solid fa-key"></i></span>
+                            <input type="password" class="form-control" name="Password" step="any" id="Password" required>
+                            <div class="invalid-feedback">
+                                ingrese una contraseña valida.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row  mb-4  Btn-content">
+                    <div class="col-md-6 justify-content-end ">
+                        <button type="submit" class="btn btn-primary btnGuardar">Guardar</button>
+                        <button type="button" class="btn btn-danger btnGuardar" onclick="redireccionar()">Cancelar</button>
+                    </div>
+                </div>
+            </form>
+        }
+    </div>
+
+
+    <!-- Button trigger modal -->
+    <!-- Modal -->
+    <div class="modal fade" id="ClienteUsuariosModal" tabindex="-1" aria-labelledby="ClienteUsuariosModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Seleccione un cliente</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-container">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>ClienteID</th>
+                                    <th>Nombre</th>
+                                    <th>PrimerApellido</th>
+                                    <th>SegundoApellido</th>
+                                    <th>CorreoElectronico</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Filas de datos -->
+                                @foreach (var personas in ViewBag.respuesta)
+                                {
+                                    <tr>
+                                        <td>@personas.IdPersona</td>
+                                        <td>@personas.Nombre</td>
+                                        <td>@personas.PrimerApellido</td>
+                                        <td>@personas.SegundoApellido</td>
+                                        <td>@personas.CorreoElectronico</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" id="AgregarCliente" class="btn btn-primary">Agregar cliente</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ErrorModal" tabindex="-1" aria-labelledby="Eliminar cliente" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><i class="fa-solid fa-triangle-exclamation"></i> Alerta</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="">
+                        <p id="ErrorMSG"> @TempData["MensajeError"]</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <script src="~/Content/javaScript/views/UsuariosCrear.js"></script>
+    <script src="https://kit.fontawesome.com/49ba607fd0.js" crossorigin="anonymous"></script>
+    <script>
+    function redireccionar() {
+        window.location.href = '@Url.Action("VistaUsuarios", "GestionUsuarios")';
+     }
+     $('.table').DataTable({
+     });
+    </script>
+    <script>
+        (() => {
+            'use strict';
+
+            const form = document.getElementById('FormAgregar');
+            form.addEventListener('submit', event => {
+                const nombreInput = document.getElementById('Nombre');
+
+                if (!nombreInput.value.trim()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    var UserName = document.getElementById("ErrorMSG");
+                    const errorMessage = 'Seleccione un usuario';
+
+                    // Set the content of the p element in the modal
+                    document.getElementById('ErrorMSG').innerHTML = errorMessage;
+
+                    $('#ErrorModal').modal('show');
+                } else {
+                    nombreInput.classList.remove('is-invalid');
+
+                }
+
+                form.classList.add('was-validated');
+            }, false);
+        })();
+    </script>
+
+</body>
+</html>
+

@@ -1,0 +1,79 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard</title>
+    <link href="~/Content/css/Dashboard/Dashboard.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">*@
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    @RenderSection("head", required: false)
+</head>
+<body class="home">
+    <div class="display-table">
+        <div class="row display-table-row">
+            <div class="col-md-2 col-sm-1  hidden-xs display-table-cell v-align box container-fluid" id="navigation">
+                <div class="logo">
+                    <a hef="home.html">
+                        <img src="~/Content/Public/img/usuario.png" alt="merkery_logo" class="hidden-xs hidden-sm">
+                        <img src="~/Content/Public/img/usuario.png" alt="merkery_logo" class="visible-xs visible-sm circle-logo">
+                    </a>
+                </div>
+                <div class="navi">
+                    <ul>
+                        <li class="active"><a href="@Url.Action("Home", "Dashboard")"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Home</span></a></li>
+                        <li><a href="#"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Gestion de Membresias</span></a></li>
+                        <li><a href="@Url.Action("VistaClientes", "GestionClientes")"><i class="fa fa-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Gestion de Clientes</span></a></li>
+                        <li><a href="@Url.Action("VistaUsuarios", "GestionUsuarios")"><i class="fa fa-users" style="color: #3886fe;" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Gestion de Usuarios</span></a></li>
+                        <li class="statistics-item"><a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Statistics</span></a></li>
+                        <li><a href="#"><i class="fa fa-sign-out" style="--fa-primary-color: #156bfe; --fa-secondary-color: #156bfe;"></i><span class="hidden-xs hidden-sm">Cerrar sesion</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-10 col-sm-11 display-table-cell v-align">
+                <div class="user-dashboard">
+                    <div class="row">
+                        <header>
+                            <div class="header-rightside">
+                                <ul class="list-inline header-top pull-right">
+                                    <li><a href="@Url.Action("Home", "Dashboard")" class="visible-xs visible-sm"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+                                    <li><a href="#" class="visible-xs visible-sm"><i class="fa fa-tasks" aria-hidden="true"></i></a></li>
+                                    <li><a href="@Url.Action("VistaClientes", "GestionClientes")" class="visible-xs visible-sm"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+                                    <li><a href="@Url.Action("VistaUsuarios", "GestionUsuarios")" class="visible-xs visible-sm"><i class="fa fa-users" aria-hidden="true"></i></a></li>
+                                    <li><a href="@Url.Action("CrearCliente", "GestionClientes")" class="add-project">Crear Cliente</a></li>
+                                    <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
+                                    <li>
+                                        <a href="#" class="icon-info">
+                                            <i class="fa fa-bell" aria-hidden="true"></i>
+                                            <span class="label label-primary">3</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                        </header>
+                    </div>
+
+                    <!-- Body-->
+                    @RenderBody()
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+
+</html>

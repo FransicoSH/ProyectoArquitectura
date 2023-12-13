@@ -1,0 +1,100 @@
+﻿table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+ 
+
+}
+
+td {
+    text-align: center;
+}
+/* Estilo del contenedor de la tabla */
+.table-container {
+    background-color: white;
+    height: 300px;
+    width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 25px;
+}
+
+/* Estilo del encabezado de la tabla */
+thead th {
+    background-color: #f2f2f2;
+    color: #333;
+    font-weight: bold;
+    padding: 10px;
+    text-align: left;
+}
+
+/* Estilo de las filas de datos */
+tbody td {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+    text-align: right;
+}
+
+/* Estilo de las filas impares de datos para agregar un poco de contraste */
+tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+/* Estilo cuando se pasa el cursor por encima de una fila */
+tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+
+
+.sales {
+    background: #ffffff none repeat scroll 0 0;
+    border: 1px solid #d4d9e3;
+    display: inline-block;
+    padding: 15px;
+    width: 100%;
+    border-radius: 30px;
+}
+
+    .sales button {
+        background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+        border: 1px solid #dadee7;
+        border-radius: 100px;
+        font-size: 15px;
+        letter-spacing: 0.5px;
+        padding-right: 22px;
+        color: #0e1a35;
+    }
+
+        .sales button::before {
+            content: "";
+            font-family: FontAwesome;
+            position: absolute;
+            right: 12px;
+            top: 11px;
+        }
+
+    .sales .btn-group {
+        float: right;
+    }
+
+    .sales h2 {
+        color: #8492af;
+        float: left;
+        font-size: 21px;
+        font-weight: 600;
+        margin-right: 15px;
+        padding: 9px 0 0;
+    }
+
+    .sales h3 {
+        color: darkviolet;
+        float: left;
+        font-size: 30px;
+        font-weight: 600;
+        margin: 0;
+        padding: 9px 0 0;
+    }

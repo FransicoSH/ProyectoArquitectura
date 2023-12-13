@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GimnasioOlympusModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="DetalleCuerpoUsuario">
+    <Key>
+      <PropertyRef Name="DetalleCuerpoID" />
+    </Key>
+    <Property Name="DetalleCuerpoID" Type="int" Nullable="false" />
+    <Property Name="Peso" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+    <Property Name="Altura" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="PorcentajeMasaMuscular" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="PorcentajeGrasaCorporal" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Persona">
+    <Key>
+      <PropertyRef Name="IdPersona" />
+    </Key>
+    <Property Name="IdPersona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Identificacion" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="150" />
+    <Property Name="PrimerApellido" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="SegundoApellido" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Direccion" Type="varchar" MaxLength="200" />
+    <Property Name="CorreoElectronico" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="NumeroTelefono" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TipoEstado">
+    <Key>
+      <PropertyRef Name="TipoEstadoID" />
+    </Key>
+    <Property Name="TipoEstadoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Estado" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TipoRol">
+    <Key>
+      <PropertyRef Name="TipoRol_ID" />
+    </Key>
+    <Property Name="TipoRol_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NombreRol" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Menbresias">
+    <Key>
+      <PropertyRef Name="MenbresiaID" />
+    </Key>
+    <Property Name="MenbresiaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TipoMembresiaID" Type="int" Nullable="false" />
+    <Property Name="TipoEstadoID" Type="int" Nullable="false" />
+    <Property Name="FechaAdquisicion" Type="date" Nullable="false" />
+    <Property Name="FechaVencimiento" Type="date" Nullable="false" />
+    <Property Name="UsuarioID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MenbresiasUsuarios">
+    <Key>
+      <PropertyRef Name="UsuarioID" />
+    </Key>
+    <Property Name="UsuarioID" Type="int" Nullable="false" />
+    <Property Name="MenbresiasID" Type="int" />
+  </EntityType>
+  <EntityType Name="TipoMembresia">
+    <Key>
+      <PropertyRef Name="TipoMembresiaID" />
+    </Key>
+    <Property Name="TipoMembresiaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Precio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="UsuarioPersona">
+    <Key>
+      <PropertyRef Name="UsuarioID" />
+    </Key>
+    <Property Name="UsuarioID" Type="int" Nullable="false" />
+    <Property Name="IdPersona" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="UsuarioID" />
+    </Key>
+    <Property Name="UsuarioID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TipoEstadoID" Type="int" Nullable="false" />
+    <Property Name="TipoRol_ID" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'GimnasioOlympus.CondicionFisica.PersonaDetalleCuerpoView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="PersonaDetalleCuerpoView">
+    <Key>
+      <PropertyRef Name="IdPersona" />
+      <PropertyRef Name="PrimerApellido" />
+      <PropertyRef Name="SegundoApellido" />
+      <PropertyRef Name="CorreoElectronico" />
+      <PropertyRef Name="NumeroTelefono" />
+      <PropertyRef Name="Peso" />
+      <PropertyRef Name="Altura" />
+      <PropertyRef Name="PorcentajeMasaMuscular" />
+      <PropertyRef Name="PorcentajeGrasaCorporal" />
+    </Key>
+    <Property Name="IdPersona" Type="int" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="150" />
+    <Property Name="PrimerApellido" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="SegundoApellido" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Direccion" Type="varchar" MaxLength="200" />
+    <Property Name="CorreoElectronico" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="NumeroTelefono" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Peso" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+    <Property Name="Altura" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="PorcentajeMasaMuscular" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="PorcentajeGrasaCorporal" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'GimnasioOlympus.General.PersonasSinUsuario' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="PersonasSinUsuario">
+    <Key>
+      <PropertyRef Name="IdPersona" />
+      <PropertyRef Name="Identificacion" />
+      <PropertyRef Name="PrimerApellido" />
+      <PropertyRef Name="SegundoApellido" />
+      <PropertyRef Name="CorreoElectronico" />
+      <PropertyRef Name="NumeroTelefono" />
+    </Key>
+    <Property Name="IdPersona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Identificacion" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="150" />
+    <Property Name="PrimerApellido" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="SegundoApellido" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Direccion" Type="varchar" MaxLength="200" />
+    <Property Name="CorreoElectronico" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="NumeroTelefono" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'GimnasioOlympus.General.PersonaView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="PersonaView">
+    <Key>
+      <PropertyRef Name="IdPersona" />
+      <PropertyRef Name="Nombre" />
+      <PropertyRef Name="PrimerApellido" />
+      <PropertyRef Name="SegundoApellido" />
+      <PropertyRef Name="CorreoElectronico" />
+      <PropertyRef Name="NumeroTelefono" />
+    </Key>
+    <Property Name="IdPersona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="PrimerApellido" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="SegundoApellido" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Direccion" Type="varchar" MaxLength="200" />
+    <Property Name="CorreoElectronico" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="NumeroTelefono" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'GimnasioOlympus.seguridad.UsuariosView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="UsuariosView">
+    <Key>
+      <PropertyRef Name="UsuarioID" />
+      <PropertyRef Name="UserName" />
+      <PropertyRef Name="Password" />
+      <PropertyRef Name="TipoEstadoID" />
+      <PropertyRef Name="Estado" />
+      <PropertyRef Name="TipoRol_ID" />
+      <PropertyRef Name="NombreRol" />
+    </Key>
+    <Property Name="UsuarioID" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="TipoEstadoID" Type="int" Nullable="false" />
+    <Property Name="Estado" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="TipoRol_ID" Type="int" Nullable="false" />
+    <Property Name="NombreRol" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Sp_ActualizarCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="General">
+    <Parameter Name="IdCliente" Type="int" Mode="In" />
+    <Parameter Name="NumemeroTelefono" Type="varchar" Mode="In" />
+    <Parameter Name="Direccion" Type="varchar" Mode="In" />
+    <Parameter Name="Peso" Type="decimal" Mode="In" />
+    <Parameter Name="Altura" Type="decimal" Mode="In" />
+    <Parameter Name="PorcentajeMasaMuscular" Type="decimal" Mode="In" />
+    <Parameter Name="PorcentajeGrasaCorporal" Type="decimal" Mode="In" />
+    <Parameter Name="Mensaje" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="Sp_AcualizarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="General">
+    <Parameter Name="IdUsuario" Type="int" Mode="In" />
+    <Parameter Name="TipoEstadoID_NAME" Type="varchar" Mode="In" />
+    <Parameter Name="Password" Type="varchar" Mode="In" />
+    <Parameter Name="Mensaje" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="Sp_EliminarCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="General">
+    <Parameter Name="IdPersona" Type="int" Mode="In" />
+    <Parameter Name="Mensaje" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="Sp_EliminarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="General">
+    <Parameter Name="IdUsuario" Type="int" Mode="In" />
+    <Parameter Name="Mensaje" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="Sp_InsertarPersona" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="General">
+    <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+    <Parameter Name="Identificacion" Type="nvarchar" Mode="In" />
+    <Parameter Name="PrimerApellido" Type="nvarchar" Mode="In" />
+    <Parameter Name="SegundoApellido" Type="nvarchar" Mode="In" />
+    <Parameter Name="Direccion" Type="nvarchar" Mode="In" />
+    <Parameter Name="CorreoElectronico" Type="nvarchar" Mode="In" />
+    <Parameter Name="NumeroTelefono" Type="nvarchar" Mode="In" />
+    <Parameter Name="Peso" Type="decimal" Mode="In" />
+    <Parameter Name="Altura" Type="decimal" Mode="In" />
+    <Parameter Name="PorcentajeMasaMuscular" Type="decimal" Mode="In" />
+    <Parameter Name="PorcentajeGrasaCorporal" Type="decimal" Mode="In" />
+    <Parameter Name="Mensaje" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="Sp_InsertarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="General">
+    <Parameter Name="IdPersona" Type="int" Mode="In" />
+    <Parameter Name="TipoRol_ID" Type="int" Mode="In" />
+    <Parameter Name="UserName" Type="varchar" Mode="In" />
+    <Parameter Name="Password" Type="varchar" Mode="In" />
+    <Parameter Name="Mensaje" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="Sp_EliminarMenbresiasUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="membresia">
+    <Parameter Name="MenbresiaID" Type="int" Mode="In" />
+    <Parameter Name="Mensaje" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="Sp_EliminarTipoMembresia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="membresia">
+    <Parameter Name="TipoMembresiaID" Type="int" Mode="In" />
+    <Parameter Name="Mensaje" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="Sp_InsertarMenbresiasUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="membresia">
+    <Parameter Name="UsuarioID" Type="int" Mode="In" />
+    <Parameter Name="TipoMenbresia" Type="varchar" Mode="In" />
+    <Parameter Name="TipoEstado" Type="varchar" Mode="In" />
+    <Parameter Name="FechaAdquisicion" Type="date" Mode="In" />
+    <Parameter Name="FechaVencimiento" Type="date" Mode="In" />
+    <Parameter Name="Mensaje" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="Sp_InsertarTipoMembresia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="membresia">
+    <Parameter Name="Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="Precio" Type="decimal" Mode="In" />
+    <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="Mensaje" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="Sp_ModidicarTipoMembresia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="membresia">
+    <Parameter Name="TipoMembresiaID" Type="int" Mode="In" />
+    <Parameter Name="Precio" Type="decimal" Mode="In" />
+    <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="Mensaje" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="sp_AutenticarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="seguridad">
+    <Parameter Name="NombreUsuario" Type="nvarchar" Mode="In" />
+    <Parameter Name="Contraseña" Type="nvarchar" Mode="In" />
+    <Parameter Name="Autenticacion" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="Sp_GenerarUsername" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="seguridad">
+    <Parameter Name="IdPersona" Type="int" Mode="In" />
+    <Parameter Name="UserName" Type="varchar" Mode="InOut" />
+  </Function>
+  <EntityContainer Name="GimnasioOlympusModelStoreContainer">
+    <EntitySet Name="DetalleCuerpoUsuario" EntityType="Self.DetalleCuerpoUsuario" Schema="CondicionFisica" store:Type="Tables" />
+    <EntitySet Name="Persona" EntityType="Self.Persona" Schema="General" store:Type="Tables" />
+    <EntitySet Name="TipoEstado" EntityType="Self.TipoEstado" Schema="General" store:Type="Tables" />
+    <EntitySet Name="TipoRol" EntityType="Self.TipoRol" Schema="General" store:Type="Tables" />
+    <EntitySet Name="Menbresias" EntityType="Self.Menbresias" Schema="membresia" store:Type="Tables" />
+    <EntitySet Name="MenbresiasUsuarios" EntityType="Self.MenbresiasUsuarios" Schema="membresia" store:Type="Tables" />
+    <EntitySet Name="TipoMembresia" EntityType="Self.TipoMembresia" Schema="membresia" store:Type="Tables" />
+    <EntitySet Name="UsuarioPersona" EntityType="Self.UsuarioPersona" Schema="seguridad" store:Type="Tables" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="seguridad" store:Type="Tables" />
+    <EntitySet Name="PersonaDetalleCuerpoView" EntityType="Self.PersonaDetalleCuerpoView" store:Type="Views" store:Schema="CondicionFisica">
+      <DefiningQuery>SELECT 
+    [PersonaDetalleCuerpoView].[IdPersona] AS [IdPersona], 
+    [PersonaDetalleCuerpoView].[Nombre] AS [Nombre], 
+    [PersonaDetalleCuerpoView].[PrimerApellido] AS [PrimerApellido], 
+    [PersonaDetalleCuerpoView].[SegundoApellido] AS [SegundoApellido], 
+    [PersonaDetalleCuerpoView].[Direccion] AS [Direccion], 
+    [PersonaDetalleCuerpoView].[CorreoElectronico] AS [CorreoElectronico], 
+    [PersonaDetalleCuerpoView].[NumeroTelefono] AS [NumeroTelefono], 
+    [PersonaDetalleCuerpoView].[Peso] AS [Peso], 
+    [PersonaDetalleCuerpoView].[Altura] AS [Altura], 
+    [PersonaDetalleCuerpoView].[PorcentajeMasaMuscular] AS [PorcentajeMasaMuscular], 
+    [PersonaDetalleCuerpoView].[PorcentajeGrasaCorporal] AS [PorcentajeGrasaCorporal]
+    FROM [CondicionFisica].[PersonaDetalleCuerpoView] AS [PersonaDetalleCuerpoView]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="PersonasSinUsuario" EntityType="Self.PersonasSinUsuario" store:Type="Views" store:Schema="General">
+      <DefiningQuery>SELECT 
+    [PersonasSinUsuario].[IdPersona] AS [IdPersona], 
+    [PersonasSinUsuario].[Identificacion] AS [Identificacion], 
+    [PersonasSinUsuario].[Nombre] AS [Nombre], 
+    [PersonasSinUsuario].[PrimerApellido] AS [PrimerApellido], 
+    [PersonasSinUsuario].[SegundoApellido] AS [SegundoApellido], 
+    [PersonasSinUsuario].[Direccion] AS [Direccion], 
+    [PersonasSinUsuario].[CorreoElectronico] AS [CorreoElectronico], 
+    [PersonasSinUsuario].[NumeroTelefono] AS [NumeroTelefono]
+    FROM [General].[PersonasSinUsuario] AS [PersonasSinUsuario]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="PersonaView" EntityType="Self.PersonaView" store:Type="Views" store:Schema="General">
+      <DefiningQuery>SELECT 
+    [PersonaView].[IdPersona] AS [IdPersona], 
+    [PersonaView].[Nombre] AS [Nombre], 
+    [PersonaView].[PrimerApellido] AS [PrimerApellido], 
+    [PersonaView].[SegundoApellido] AS [SegundoApellido], 
+    [PersonaView].[Direccion] AS [Direccion], 
+    [PersonaView].[CorreoElectronico] AS [CorreoElectronico], 
+    [PersonaView].[NumeroTelefono] AS [NumeroTelefono]
+    FROM [General].[PersonaView] AS [PersonaView]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="UsuariosView" EntityType="Self.UsuariosView" store:Type="Views" store:Schema="seguridad">
+      <DefiningQuery>SELECT 
+    [UsuariosView].[UsuarioID] AS [UsuarioID], 
+    [UsuariosView].[UserName] AS [UserName], 
+    [UsuariosView].[Password] AS [Password], 
+    [UsuariosView].[TipoEstadoID] AS [TipoEstadoID], 
+    [UsuariosView].[Estado] AS [Estado], 
+    [UsuariosView].[TipoRol_ID] AS [TipoRol_ID], 
+    [UsuariosView].[NombreRol] AS [NombreRol], 
+    [UsuariosView].[Descripcion] AS [Descripcion]
+    FROM [seguridad].[UsuariosView] AS [UsuariosView]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,45 @@
+﻿.options-container {
+    margin-bottom: 20px;
+    width: 100% !important;
+}
+
+.table-container {
+    position: relative;
+}
+
+.table {
+    border-collapse: collapse;
+}
+
+    .table th, .table td {
+        border: none;
+    }
+
+.pagination-control {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 20px;
+}
+
+
+.containerPrincipal {
+    margin-top: 20px;
+    width:100%;
+}
+
+.row-selected {
+    background: green !important;
+    color: white;
+}
+
+
+.other-clic {
+    background: green !important;
+    color: white;
+}
+
+tr {
+    cursor: pointer;
+}
+
