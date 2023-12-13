@@ -20,24 +20,47 @@
 </head>
 
 <body>
+   
+    @if (TempData["MensajeError"] != null)
+    {
+        <script>
+            $(document).ready(function () {
+                $('#ErrorModal').modal('show');
+            });
+
+        </script>
+    }
+
+
     <div class="Contenedor-From">
-        @using (Html.BeginForm("Crear_Usuario", "GestionUsuarios", FormMethod.Post, new { @class = "Form-Main was-validated ", id = "FormAgregar" }))
+        @using (Html.BeginForm("Crear_Usuario", "GestionUsuarios", FormMethod.Post, new { @class = "Form-Main needs-validation", @id = "FormAgregarUsuario", novalidate = "true" }))
         {
             <h2>Crear Cliente</h2>
-            <form  id="FormAgregar">
+            <form id="FormAgregar">
+                <div class="row  mb-3">
+                    <div class="col-md-3">
+                        <label class="form-label">Rol</label>
+                        <select class="form-select" aria-label="Default select example" name="TipoRol_ID" id="TipoRol_ID">
+                            @if (ViewBag.Estados != null)
+                            {
+                                foreach (var Rol in ViewBag.tipoRols)
+                                {
+                                    <option value="@Rol.TipoRol_ID">
+                                        @Rol.NombreRol
+                                    </option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label class="form-label">Seleccione un cliente: </label>                        
+                        <label id="lbNombre" class="form-label">Ingrese el nombre del administrador </label>
                         <div class=" contenerdo-Buscar mb-3 ">
-                            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" data-bs-toggle="modal" data-bs-target="#ClienteUsuariosModal"> <i class="material-icons">add</i>  </button>
+                            <button type="button" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" data-bs-toggle="modal" data-bs-target="#ClienteUsuariosModal" id="AgregarClienteBTN" disabled> <i class="material-icons">add</i>  </button>
                             <input type="text" class="form-control form-check" style="width:50px;" name="Idpersona" id="Idpersona" readonly required>
-                            <input type="text" class="form-control form-check" name="Nombre" id="Nombre" readonly required>
+                            <input type="text" class="form-control form-check" name="Nombre" id="Nombre"  required>
                         </div>
-                    </div>
-                    
-                    <div class="col-md-3">
-                        <label class="form-label">State</label>
-                        <input type="text" class="form-control" name="NombreRol" onkeydown="filtro()" step="any" id="NombreRol" value="Cliente" readonly required>
                     </div>
                 </div>
 
@@ -46,7 +69,10 @@
                         <label class="form-label">Usuario</label>
                         <div class="input-group ">
                             <span class="input-group-text" id="basic-addon3"><i class="fa-solid fa-user"></i></span>
-                            <input type="text" class="form-control" name="UserName" id="UserName" onkeydown="filtro()" step="any" readonly required>
+                            <input type="text" class="form-control" name="UserName" id="UserName" step="any" required>
+                            <div class="invalid-feedback">
+                                Ingrese un nombre de usuario valido.
+                            </div>
                         </div>
                     </div>
 
@@ -133,7 +159,7 @@
         </div>
     </div>
 
-
+    @Html.Raw("<script src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js' integrity='sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r' crossorigin='anonymous'></script>")
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <script src="~/Content/javaScript/views/UsuariosCrear.js"></script>
     <script src="https://kit.fontawesome.com/49ba607fd0.js" crossorigin="anonymous"></script>
@@ -145,32 +171,60 @@
      });
     </script>
     <script>
-        (() => {
-            'use strict';
+        document.addEventListener('DOMContentLoaded', function () {
+            var form = document.getElementById('FormAgregarUsuario');
 
-            const form = document.getElementById('FormAgregar');
-            form.addEventListener('submit', event => {
-                const nombreInput = document.getElementById('Nombre');
+            form.addEventListener('submit', function (event) {
+                var nombreInput = document.getElementById('UserName');
+                var passwordInput = document.getElementById('Password');
+                var selectedValue = document.getElementById('TipoRol_ID').value; // Reemplaza 'tuIdDelElemento' con el ID correcto
 
-                if (!nombreInput.value.trim()) {
+                if (nombreInput.value.trim() === '') {
                     event.preventDefault();
                     event.stopPropagation();
-                    var UserName = document.getElementById("ErrorMSG");
-                    const errorMessage = 'Seleccione un usuario';
-
-                    // Set the content of the p element in the modal
-                    document.getElementById('ErrorMSG').innerHTML = errorMessage;
-
-                    $('#ErrorModal').modal('show');
-                } else {
-                    nombreInput.classList.remove('is-invalid');
-
+                    form.classList.add('was-validated');
+                    var errorMSG = document.getElementById('ErrorMSG');
+                    if (selectedValue === '2') { // Usar === para comparación, no =
+                        errorMSG.textContent = "Seleccione un cliente";
+                        $('#ErrorModal').modal('show');
+                    }
                 }
-
-                form.classList.add('was-validated');
-            }, false);
-        })();
+                if (passwordInput.value.trim() === '') {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    form.classList.add('was-validated');
+                }
+            });
+        });
     </script>
+
+    <script>
+        $(document).ready(function () {
+
+            $('#TipoRol_ID').change(function () {
+
+                var selectedValue = $(this).val();
+                console.info(selectedValue)
+                var Nomnbre = $('#Nombre');
+                var userNameField = $('#UserName');
+                var lbText = $('#lbNombre') 
+
+                var Button = $('#AgregarClienteBTN');
+                if (selectedValue == 1) {
+                    userNameField.removeAttr('readonly');
+                    Button.prop('disabled', true);
+                    lbText.html("Ingrese el nombre del administrador");
+                    Nomnbre.attr('readonly', false);
+                } else {
+                    Nomnbre.attr('readonly', true);
+                    lbText.html("Seleccione a un cliente");
+                    userNameField.attr('readonly', true);
+                    Button.prop('disabled', false);
+                }
+            });
+        });
+    </script>
+
 
 </body>
 </html>

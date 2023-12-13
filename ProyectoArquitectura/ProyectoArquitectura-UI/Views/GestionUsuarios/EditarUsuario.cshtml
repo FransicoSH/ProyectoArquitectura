@@ -21,8 +21,19 @@
 </head>
 
 <body>
+
+    @if (TempData["MensajeError"] != null)
+    {
+        <script>
+            $(document).ready(function () {
+                $('#ErrorModal').modal('show');
+            });
+
+        </script>
+    }
+
     <div class="Contenedor-From">
-        @using (Html.BeginForm("Crear_Usuario", "GestionUsuarios", FormMethod.Post, new { @class = "Form-Main was-validated ", id = "FormAgregar" }))
+        @using (Html.BeginForm("Actualizar_Usuario", "GestionUsuarios", FormMethod.Post, new { @class = "Form-Main was-validated ", id = "FormAgregar" }))
         {
             <h2>Editar Usuario</h2>
             <form id="FormAgregar">
@@ -30,25 +41,38 @@
 
                     <div class="col-md-6 mb-3">
                         <label class="form-label">Seleccione un estado: </label>
-                        <div class=" contenerdo-Buscar mb-3 ">
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Dropdown button
-                                </button>
-                                <ul class="dropdown-menu" id="dropdown">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </div>
+                        <select class="form-select" aria-label="Default select example" name="TipoEstadoID">
 
-                        </div>
+                            @if (ViewBag.Estados != null)
+                            {
+                                foreach (var Estados in ViewBag.Estados)
+                                {
+                                    <option value="@Estados.TipoEstadoID" @(Estados.TipoEstadoID == ViewBag.Usuario.TipoEstadoID ? "selected" : "")>
+                                        @Estados.Estado
+                                    </option>
+
+                                }
+                            }
+                        </select>
                     </div>
 
 
                     <div class="col-md-3">
                         <label class="form-label">Rol</label>
-                        <input type="text" class="form-control" name="NombreRol" onkeydown="filtro()" step="any" id="NombreRol" value="@ViewBag.Usuario.NombreRol" readonly required>
+                        <select class="form-select" aria-label="Default select example" name="TipoRol_ID">
+
+                            @if (ViewBag.Estados != null)
+                            {
+                                foreach (var Rol in ViewBag.tipoRols)
+                                {
+                                    <option value="@Rol.TipoRol_ID" @(Rol.TipoRol_ID == ViewBag.Usuario.TipoRol_ID ? "selected" : "")>
+                                        @Rol.NombreRol
+                                    </option>
+                                }
+                            }
+                        </select>
+
+
                     </div>
                 </div>
 
@@ -85,6 +109,25 @@
             </form>
         }
     </div>
+
+
+    <!-- Modal Error -->
+    <div class="modal fade" id="ErrorModal" tabindex="-1" aria-labelledby="Eliminar cliente" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Error en el sistema</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="mensajeExito">
+                        <p><i class="fa-solid fa-triangle-exclamation"></i> @TempData["MensajeError"]</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
     @Html.Raw("<script src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js' integrity='sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r' crossorigin='anonymous'></script>")
