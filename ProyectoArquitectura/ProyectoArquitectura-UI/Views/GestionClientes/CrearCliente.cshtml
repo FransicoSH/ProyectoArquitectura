@@ -33,119 +33,119 @@
         </script>
     }
 
-<div class="Contenedor-From">
+    <div class="Contenedor-From">
 
-    @using (Html.BeginForm("CrearNuevoCliente", "GestionClientes", FormMethod.Post, new { @class = "Form-Main ", id = "FormCrearCliente" }))
-    {
-        <form class="" id="FormCrearCliente">
-            <h2>Crear Cliente</h2>
-            <div class="input-group mb-3">
-                <span class="input-group-text"><i class="fa-solid fa-id-card"></i></span>
-                <input type="text" class="form-control" name="Identificacion" id="Identificacion" placeholder="Identificacion" required>
-                <div class="invalid-feedback">Por favor, ingrese un nombre válido.</div>
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text"><i class="fa fa-person-circle-plus"></i></span>
-                <input type="text" class="form-control" name="Nombre" id="Nombre" placeholder="Nombre" required>
-                <div class="invalid-feedback">Por favor, ingrese un nombre válido.</div>
-            </div>
-
-            <div class="input-group mb-3">
-                <div class="input-group  mb-3">
-                    <span class="input-group-text">Apellidos</span>
-                    <input type="text" class="form-control" name="PrimerApellido" id="PrimerApellido" placeholder="Primer apellido" required>
-                    <input type="text" class="form-control" name="SegundoApellido" id="SegundoApellido" placeholder="Segundo apellido" required>
-                    <div class="invalid-feedback">Por favor, ingrese los apellidos completos</div>
+        @using (Html.BeginForm("CrearNuevoCliente", "GestionClientes", FormMethod.Post, new { @class = "Form-Main needs-validation", @id = "FormAgregarCliente", novalidate = "true" }))
+        {
+            <form class="" id="FormCrearCliente">
+                <h2>Crear Cliente</h2>               
+                <div class="input-group mb-3">
+                    <span class="input-group-text"><i class="fa-solid fa-id-card"></i></span>
+                    <input type="text" class="form-control" name="Identificacion" id="Identificacion" placeholder="Identificacion" required>
+                    <div class="invalid-feedback">Por favor, ingrese un Identificacion válida.</div>
                 </div>
-            </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text"><i class="fa fa-person-circle-plus"></i></span>
+                    <input type="text" class="form-control" name="Nombre" id="Nombre" placeholder="Nombre" required>
+                    <div class="invalid-feedback">Por favor, ingrese un nombre válido.</div>
+                </div>
 
-            <div class="row  mb-3">
-
-                <div class="col-md-6">
-                    <label for="basic-url" class="form-label">Correo electronico</label>
-                    <div class="input-group">
-                        <span class="input-group-text" id="basic-addon3">ejemplo@email.com</span>
-                        <input type="email" class="form-control" name="CorreoElectronico" id="CorreoElectronico" aria-describedby="basic-addon3 basic-addon4" required>
-                        <div class="invalid-feedback">Por favor, ingrese un Correo Electronico válido</div>
-
+                <div class="input-group mb-3">
+                    <div class="input-group  mb-3">
+                        <span class="input-group-text">Apellidos</span>
+                        <input type="text" class="form-control" name="PrimerApellido" id="PrimerApellido" placeholder="Primer apellido" required>
+                        <input type="text" class="form-control" name="SegundoApellido" id="SegundoApellido" placeholder="Segundo apellido" required>
+                        <div class="invalid-feedback">Por favor, ingrese los apellidos completos</div>
                     </div>
                 </div>
 
-                <div class="col-md-6">
-                    <label for="basic-url" class="form-label">Telefono</label>
-                    <div class="input-group">
-                        <span class="input-group-text" id="basic-addon3"><i class="fa-solid fa-phone"></i></span>
-                        <input type="tel" class="form-control" name="NumeroTelefono" id="NumeroTelefono">
+                <div class="row  mb-3">
+
+                    <div class="col-md-6">
+                        <label for="basic-url" class="form-label">Correo electronico</label>
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon3">ejemplo@email.com</span>
+                            <input type="email" class="form-control" name="CorreoElectronico" id="CorreoElectronico" aria-describedby="basic-addon3 basic-addon4" required>
+                            <div class="invalid-feedback">Por favor, ingrese un Correo Electronico válido</div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="basic-url" class="form-label">Telefono</label>
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon3"><i class="fa-solid fa-phone"></i></span>
+                            <input type="tel" class="form-control" name="NumeroTelefono" id="NumeroTelefono">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="input-group">
-                <span class="input-group-text">Direccion</span>
-                <textarea class="form-control" name="Direccion" id="Direccion"></textarea>
-            </div>
-            <br />
-
-            <div class="row">
-                <h5>Detalle de medidas</h5>
-
-            </div>
-
-            <div class="row  mb-3">
-                <div class="col-md-6">
-                    <label for="basic-url" class="form-label">Altura</label>
-                    <div class="input-group">
-                        <span class="input-group-text" id="basic-addon3"><i class="fa-solid fa-plus"></i></span>
-                        <input type="text" class="form-control" name="Altura" id="Altura" onkeydown="filtro()" step="any" required>
-                        <div class="invalid-feedback">Por favor, ingrese una altura válido.</div>
-                    </div>
+                <div class="input-group">
+                    <span class="input-group-text">Direccion</span>
+                    <textarea class="form-control" name="Direccion" id="Direccion"></textarea>
                 </div>
-                <div class="col-md-6">
-                    <label for="basic-url" class="form-label">Peso</label>
-                    <div class="input-group">
-                        <span class="input-group-text" id="basic-addon3"><i class="fa-solid fa-weight-scale"></i></span>
-                        <input type="number" class="form-control" name="Peso" onkeydown="filtro()" id="Peso" step="any" required>
-                        <div class="invalid-feedback">Por favor, ingrese un peso válido.</div>
-                    </div>
-                </div>
-            </div>
+                <br />
 
+                <div class="row">
+                    <h5>Detalle de medidas</h5>
 
-            <div class="row  mb-3">
-                <div class="col-md-6">
-                    <label for="basic-url" class="form-label">Porcentaje Masa Muscular</label>
-                    <div class="input-group">
-                        <span class="input-group-text" id="basic-addon3"><i class="fa-solid fa-dumbbell"></i></span>
-                        <input type="text" class="form-control" name="PorcentajeMasaMuscular" id="PorcentajeMasaMuscular" onkeydown="filtro()" step="any" required>
-                        <div class="invalid-feedback">Por favor, ingrese un Porcentaje Masa Muscular válido.</div>
-
-                    </div>
                 </div>
 
-                <div class="col-md-6">
-                    <label for="basic-url" class="form-label">Porcentaje Grasa Corporal</label>
-                    <div class="input-group">
-                        <span class="input-group-text" id="basic-addon3"><i class="fa-solid fa-weight-hanging"></i></span>
-                        <input type="number" class="form-control" name="PorcentajeGrasaCorporal" onkeydown="filtro()" step="any" id="PorcentajeGrasaCorporal" required>
-                        <div class="invalid-feedback">Por favor, ingrese un Porcentaje Grasa Corporal válido.</div>
-
+                <div class="row  mb-3">
+                    <div class="col-md-6">
+                        <label for="basic-url" class="form-label">Altura</label>
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon3"><i class="fa-solid fa-plus"></i></span>
+                            <input type="text" class="form-control" name="Altura" id="Altura" onkeydown="filtro()" step="any" required>
+                            <div class="invalid-feedback">Por favor, ingrese una altura válido.</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="basic-url" class="form-label">Peso</label>
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon3"><i class="fa-solid fa-weight-scale"></i></span>
+                            <input type="number" class="form-control" name="Peso" onkeydown="filtro()" id="Peso" step="any" required>
+                            <div class="invalid-feedback">Por favor, ingrese un peso válido.</div>
+                        </div>
                     </div>
                 </div>
 
-            </div>
 
-            <div class="row  mb-4  Btn-content">
-                <div class="col-md-6 justify-content-end ">
-                    <button type="submit" class="btn btn-primary ">Guardar</button>
-                    <button type="button" class="btn btn-danger btnGuardar" onclick="redireccionar()">Cancelar</button>
+                <div class="row  mb-3">
+                    <div class="col-md-6">
+                        <label for="basic-url" class="form-label">Porcentaje Masa Muscular</label>
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon3"><i class="fa-solid fa-dumbbell"></i></span>
+                            <input type="text" class="form-control" name="PorcentajeMasaMuscular" id="PorcentajeMasaMuscular" onkeydown="filtro()" step="any" required>
+                            <div class="invalid-feedback">Por favor, ingrese un Porcentaje Masa Muscular válido.</div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="basic-url" class="form-label">Porcentaje Grasa Corporal</label>
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon3"><i class="fa-solid fa-weight-hanging"></i></span>
+                            <input type="number" class="form-control" name="PorcentajeGrasaCorporal" onkeydown="filtro()" step="any" id="PorcentajeGrasaCorporal" required>
+                            <div class="invalid-feedback">Por favor, ingrese un Porcentaje Grasa Corporal válido.</div>
+
+                        </div>
+                    </div>
+
                 </div>
 
+                <div class="row  mb-4  Btn-content">
+                    <div class="col-md-6 justify-content-end ">
+                        <button type="submit" class="btn btn-primary ">Guardar</button>
+                        <button type="button" class="btn btn-danger btnGuardar" onclick="redireccionar()">Cancelar</button>
+                    </div>
 
 
 
-            </div>
-        </form>
-    }
-</div>
+
+                </div>
+            </form>
+        }
+    </div>
 
 
     <!-- Modal Error -->
@@ -183,16 +183,16 @@
     </script>
 
     <script>
-        (() => {
-            'use strict';
-
-            const form = document.getElementById('FormCrearCliente');
-            form.addEventListener('submit', event => {
-               
-            
+        document.addEventListener('DOMContentLoaded', function () {
+            var form = document.getElementById('FormAgregarCliente');
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
                 form.classList.add('was-validated');
-            }, false);
-        })();     
+            });
+        });
     </script>
 
 
