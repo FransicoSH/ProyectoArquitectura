@@ -111,6 +111,24 @@ warning 6002: The table/view 'GimnasioOlympus.CondicionFisica.PersonaDetalleCuer
     <Property Name="PorcentajeGrasaCorporal" Type="decimal" Precision="5" Scale="2" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
+warning 6002: The table/view 'GimnasioOlympus.General.Metricas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Metricas">
+    <Key>
+      <PropertyRef Name="Metrica" />
+    </Key>
+    <Property Name="Metrica" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="cantidad" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'GimnasioOlympus.General.PersonaMetricas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="PersonaMetricas">
+    <Key>
+      <PropertyRef Name="Metrica" />
+    </Key>
+    <Property Name="Metrica" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="cantidad" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
 warning 6002: The table/view 'GimnasioOlympus.General.PersonasSinUsuario' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="PersonasSinUsuario">
     <Key>
@@ -148,6 +166,24 @@ warning 6002: The table/view 'GimnasioOlympus.General.PersonaView' does not have
     <Property Name="Direccion" Type="varchar" MaxLength="200" />
     <Property Name="CorreoElectronico" Type="varchar" MaxLength="255" Nullable="false" />
     <Property Name="NumeroTelefono" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'GimnasioOlympus.membresia.TipoMembresiaIDMetricas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="TipoMembresiaIDMetricas">
+    <Key>
+      <PropertyRef Name="Metrica" />
+    </Key>
+    <Property Name="Metrica" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="cantidad" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'GimnasioOlympus.seguridad.UsuariosMetricas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="UsuariosMetricas">
+    <Key>
+      <PropertyRef Name="Metrica" />
+    </Key>
+    <Property Name="Metrica" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="cantidad" Type="int" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'GimnasioOlympus.seguridad.UsuariosView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -279,6 +315,18 @@ warning 6002: The table/view 'GimnasioOlympus.seguridad.UsuariosView' does not h
     [PersonaDetalleCuerpoView].[PorcentajeGrasaCorporal] AS [PorcentajeGrasaCorporal]
     FROM [CondicionFisica].[PersonaDetalleCuerpoView] AS [PersonaDetalleCuerpoView]</DefiningQuery>
     </EntitySet>
+    <EntitySet Name="Metricas" EntityType="Self.Metricas" store:Type="Views" store:Schema="General">
+      <DefiningQuery>SELECT 
+    [Metricas].[Metrica] AS [Metrica], 
+    [Metricas].[cantidad] AS [cantidad]
+    FROM [General].[Metricas] AS [Metricas]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="PersonaMetricas" EntityType="Self.PersonaMetricas" store:Type="Views" store:Schema="General">
+      <DefiningQuery>SELECT 
+    [PersonaMetricas].[Metrica] AS [Metrica], 
+    [PersonaMetricas].[cantidad] AS [cantidad]
+    FROM [General].[PersonaMetricas] AS [PersonaMetricas]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="PersonasSinUsuario" EntityType="Self.PersonasSinUsuario" store:Type="Views" store:Schema="General">
       <DefiningQuery>SELECT 
     [PersonasSinUsuario].[IdPersona] AS [IdPersona], 
@@ -301,6 +349,18 @@ warning 6002: The table/view 'GimnasioOlympus.seguridad.UsuariosView' does not h
     [PersonaView].[CorreoElectronico] AS [CorreoElectronico], 
     [PersonaView].[NumeroTelefono] AS [NumeroTelefono]
     FROM [General].[PersonaView] AS [PersonaView]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="TipoMembresiaIDMetricas" EntityType="Self.TipoMembresiaIDMetricas" store:Type="Views" store:Schema="membresia">
+      <DefiningQuery>SELECT 
+    [TipoMembresiaIDMetricas].[Metrica] AS [Metrica], 
+    [TipoMembresiaIDMetricas].[cantidad] AS [cantidad]
+    FROM [membresia].[TipoMembresiaIDMetricas] AS [TipoMembresiaIDMetricas]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="UsuariosMetricas" EntityType="Self.UsuariosMetricas" store:Type="Views" store:Schema="seguridad">
+      <DefiningQuery>SELECT 
+    [UsuariosMetricas].[Metrica] AS [Metrica], 
+    [UsuariosMetricas].[cantidad] AS [cantidad]
+    FROM [seguridad].[UsuariosMetricas] AS [UsuariosMetricas]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="UsuariosView" EntityType="Self.UsuariosView" store:Type="Views" store:Schema="seguridad">
       <DefiningQuery>SELECT 

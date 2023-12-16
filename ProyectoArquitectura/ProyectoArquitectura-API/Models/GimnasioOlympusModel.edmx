@@ -116,6 +116,24 @@ warning 6002: The table/view 'GimnasioOlympus.CondicionFisica.PersonaDetalleCuer
           <Property Name="PorcentajeGrasaCorporal" Type="decimal" Precision="5" Scale="2" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'GimnasioOlympus.General.Metricas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Metricas">
+          <Key>
+            <PropertyRef Name="Metrica" />
+          </Key>
+          <Property Name="Metrica" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="cantidad" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'GimnasioOlympus.General.PersonaMetricas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="PersonaMetricas">
+          <Key>
+            <PropertyRef Name="Metrica" />
+          </Key>
+          <Property Name="Metrica" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="cantidad" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'GimnasioOlympus.General.PersonasSinUsuario' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="PersonasSinUsuario">
           <Key>
@@ -153,6 +171,24 @@ warning 6002: The table/view 'GimnasioOlympus.General.PersonaView' does not have
           <Property Name="Direccion" Type="varchar" MaxLength="200" />
           <Property Name="CorreoElectronico" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="NumeroTelefono" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'GimnasioOlympus.membresia.TipoMembresiaIDMetricas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TipoMembresiaIDMetricas">
+          <Key>
+            <PropertyRef Name="Metrica" />
+          </Key>
+          <Property Name="Metrica" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="cantidad" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'GimnasioOlympus.seguridad.UsuariosMetricas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="UsuariosMetricas">
+          <Key>
+            <PropertyRef Name="Metrica" />
+          </Key>
+          <Property Name="Metrica" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="cantidad" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'GimnasioOlympus.seguridad.UsuariosView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -284,6 +320,18 @@ warning 6002: The table/view 'GimnasioOlympus.seguridad.UsuariosView' does not h
     [PersonaDetalleCuerpoView].[PorcentajeGrasaCorporal] AS [PorcentajeGrasaCorporal]
     FROM [CondicionFisica].[PersonaDetalleCuerpoView] AS [PersonaDetalleCuerpoView]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="Metricas" EntityType="Self.Metricas" store:Type="Views" store:Schema="General">
+            <DefiningQuery>SELECT 
+    [Metricas].[Metrica] AS [Metrica], 
+    [Metricas].[cantidad] AS [cantidad]
+    FROM [General].[Metricas] AS [Metricas]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PersonaMetricas" EntityType="Self.PersonaMetricas" store:Type="Views" store:Schema="General">
+            <DefiningQuery>SELECT 
+    [PersonaMetricas].[Metrica] AS [Metrica], 
+    [PersonaMetricas].[cantidad] AS [cantidad]
+    FROM [General].[PersonaMetricas] AS [PersonaMetricas]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="PersonasSinUsuario" EntityType="Self.PersonasSinUsuario" store:Type="Views" store:Schema="General">
             <DefiningQuery>SELECT 
     [PersonasSinUsuario].[IdPersona] AS [IdPersona], 
@@ -306,6 +354,18 @@ warning 6002: The table/view 'GimnasioOlympus.seguridad.UsuariosView' does not h
     [PersonaView].[CorreoElectronico] AS [CorreoElectronico], 
     [PersonaView].[NumeroTelefono] AS [NumeroTelefono]
     FROM [General].[PersonaView] AS [PersonaView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TipoMembresiaIDMetricas" EntityType="Self.TipoMembresiaIDMetricas" store:Type="Views" store:Schema="membresia">
+            <DefiningQuery>SELECT 
+    [TipoMembresiaIDMetricas].[Metrica] AS [Metrica], 
+    [TipoMembresiaIDMetricas].[cantidad] AS [cantidad]
+    FROM [membresia].[TipoMembresiaIDMetricas] AS [TipoMembresiaIDMetricas]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="UsuariosMetricas" EntityType="Self.UsuariosMetricas" store:Type="Views" store:Schema="seguridad">
+            <DefiningQuery>SELECT 
+    [UsuariosMetricas].[Metrica] AS [Metrica], 
+    [UsuariosMetricas].[cantidad] AS [cantidad]
+    FROM [seguridad].[UsuariosMetricas] AS [UsuariosMetricas]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="UsuariosView" EntityType="Self.UsuariosView" store:Type="Views" store:Schema="seguridad">
             <DefiningQuery>SELECT 
@@ -421,6 +481,10 @@ warning 6002: The table/view 'GimnasioOlympus.seguridad.UsuariosView' does not h
             <Parameter Name="IdPersona" Mode="In" Type="Int32" />
             <Parameter Name="UserName" Mode="InOut" Type="String" />
           </FunctionImport>
+          <EntitySet Name="PersonaMetricas" EntityType="GimnasioOlympusModel.PersonaMetricas" />
+          <EntitySet Name="UsuariosMetricas" EntityType="GimnasioOlympusModel.UsuariosMetricas" />
+          <EntitySet Name="TipoMembresiaIDMetricas" EntityType="GimnasioOlympusModel.TipoMembresiaIDMetricas" />
+          <EntitySet Name="Metricas" EntityType="GimnasioOlympusModel.Metricas" />
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -595,6 +659,34 @@ warning 6002: The table/view 'GimnasioOlympus.seguridad.UsuariosView' does not h
           <Property Name="NombreRol" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="PersonaMetricas">
+          <Key>
+            <PropertyRef Name="Metrica" />
+          </Key>
+          <Property Name="Metrica" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad" Type="Int32" />
+        </EntityType>
+        <EntityType Name="UsuariosMetricas">
+          <Key>
+            <PropertyRef Name="Metrica" />
+          </Key>
+          <Property Name="Metrica" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TipoMembresiaIDMetricas">
+          <Key>
+            <PropertyRef Name="Metrica" />
+          </Key>
+          <Property Name="Metrica" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Metricas">
+          <Key>
+            <PropertyRef Name="Metrica" />
+          </Key>
+          <Property Name="Metrica" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -764,6 +856,38 @@ warning 6002: The table/view 'GimnasioOlympus.seguridad.UsuariosView' does not h
           <FunctionImportMapping FunctionImportName="Sp_ModidicarTipoMembresia" FunctionName="GimnasioOlympusModel.Store.Sp_ModidicarTipoMembresia" />
           <FunctionImportMapping FunctionImportName="sp_AutenticarUsuario" FunctionName="GimnasioOlympusModel.Store.sp_AutenticarUsuario" />
           <FunctionImportMapping FunctionImportName="Sp_GenerarUsername" FunctionName="GimnasioOlympusModel.Store.Sp_GenerarUsername" />
+          <EntitySetMapping Name="PersonaMetricas">
+            <EntityTypeMapping TypeName="GimnasioOlympusModel.PersonaMetricas">
+              <MappingFragment StoreEntitySet="PersonaMetricas">
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="Metrica" ColumnName="Metrica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsuariosMetricas">
+            <EntityTypeMapping TypeName="GimnasioOlympusModel.UsuariosMetricas">
+              <MappingFragment StoreEntitySet="UsuariosMetricas">
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="Metrica" ColumnName="Metrica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoMembresiaIDMetricas">
+            <EntityTypeMapping TypeName="GimnasioOlympusModel.TipoMembresiaIDMetricas">
+              <MappingFragment StoreEntitySet="TipoMembresiaIDMetricas">
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="Metrica" ColumnName="Metrica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Metricas">
+            <EntityTypeMapping TypeName="GimnasioOlympusModel.Metricas">
+              <MappingFragment StoreEntitySet="Metricas">
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="Metrica" ColumnName="Metrica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

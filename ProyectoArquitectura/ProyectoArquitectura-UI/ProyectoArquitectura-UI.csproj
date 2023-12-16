@@ -153,16 +153,19 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\GestionClientesController.cs" />
+    <Compile Include="Controllers\GestionMenbresiasController.cs" />
     <Compile Include="Controllers\GestionUsuariosController.cs" />
     <Compile Include="Controllers\inicioSesionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Metricas.cs" />
     <Compile Include="Models\PersonaDetalleCuerpo.cs" />
     <Compile Include="Models\cliente.cs" />
     <Compile Include="Models\PersnaView.cs" />
     <Compile Include="Models\RespuestaLogin.cs" />
     <Compile Include="Models\TipoEstados.cs" />
+    <Compile Include="Models\TipoMembresia.cs" />
     <Compile Include="Models\TipoRol.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\UsuariosView.cs" />
@@ -175,10 +178,12 @@
     <Content Include="Content\css\Gestiones\Cliente\Cliente.css" />
     <Content Include="Content\css\Gestiones\Formularios.css" />
     <Content Include="Content\css\Gestiones\General.css" />
+    <Content Include="Content\css\Gestiones\Membresias\Menbresias.css" />
     <Content Include="Content\css\Gestiones\Usuario\Usuario.css" />
     <Content Include="Content\css\inicioSesion\Login.css" />
     <Content Include="Content\javaScript\views\Clientes.js" />
     <Content Include="Content\javaScript\views\Editar.js" />
+    <Content Include="Content\javaScript\views\Menbresias.js" />
     <Content Include="Content\javaScript\views\Usuarios.js" />
     <Content Include="Content\javaScript\views\UsuariosCrear.js" />
     <Content Include="Content\Public\img\usuario.png" />
@@ -218,6 +223,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="packages.config" />
+    <Content Include="Views\GestionMenbresias\VistaMenbresias.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

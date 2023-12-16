@@ -15,52 +15,99 @@
     <link href="~/Content/css/Dashboard/Home.css" rel="stylesheet" />
 }
 
-<div class="row">
-    <div class="col-md-3 col-sm-3 col-xs-12 gutter">
-        <div class="sales">
-            <h2>Cantidad total de Usuarios </h2>
-            <h3>100</h3>
+<div class="row" style="margin-top:10px; margin-bottom:10px;">
+    <div class="col-xxl-4 col-md-6">
+        <div class="card info-card sales-card">
+            <div class="card-body">
+                <h5 class="card-title">Total <span>| Clientes</span></h5>
+
+                <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                        <i class="bi bi-cart"></i>
+                    </div>
+                    <div class="ps-3">
+                        <h6>@ViewBag.Clientes.cantidad</h6>
+                        @*<span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>*@
+
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="sales">
-            <h2>Cantidad total de Menbresias </h2>
-            <h3>100</h3>
+    </div>
+    <div class="col-xxl-4 col-md-6">
+        <div class="card info-card sales-card">
+            <div class="card-body">
+                <h5 class="card-title">Total <span>| Membresias</span></h5>
+
+                <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                        <i class="bi bi-cart"></i>
+                    </div>
+                    <div class="ps-3">
+                        <h6>@ViewBag.Membresia.cantidad</h6>
+                        @*<span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>*@
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    @*<div class="col-md-3 col-sm-3 col-xs-12 gutter">
+    <div class="col-xxl-4 col-md-6">
+        <div class="card info-card revenue-card">
+            <div class="card-body">
+                <h5 class="card-title">Total <span>| Usuarios</span></h5>
+                <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                        <i class="bi bi-currency-dollar"></i>
+                    </div>
+                    <div class="ps-3">
+                        <h6>@ViewBag.Usurios.cantidad</h6>
+                        @*<span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-        </div>*@
+<div class="col-12">
+    <div class="card top-selling overflow-auto">
 
-    <div class="col-md-8 col-sm-8 col-xs-12 gutter">
-        <div class="sales">
-            <h2>Cantidad total de Menbresias adquieridas por Tipo</h2>
-            <br />
-            <br />
-            <table id="tabla-dinamica">
+        <div class="filter">
+            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+        </div>
+
+        <div class="card-body pb-0">
+            <h5 class="card-title">Top Selling <span>| Today</span></h5>
+
+            <table class="table table-borderless">
                 <thead>
-                    <tr>
-                        <th>Numero de Menbresia</th>
-                        <th>Nombre de Menbresia</th>
-                        <th>Cantidad</th>
-
+                    <tr>                      
+                        <th scope="col">Menbresia</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Cantidad adquisiciones</th>
+                        <th scope="col">Tota de venta</th>
                     </tr>
-
-                    @for (int i = 0; i < 10; i++)
-                    {
-                        <tr>
-                            <td> @i</td>
-                            <td>Nombre @i</td>
-                            <td> @i</td>
-
-                        </tr>
-                    }
-
-
                 </thead>
                 <tbody>
+                    <tr>
+                        <td><a href="#" class=" fw-bold">Ut inventore ipsa voluptas nulla</a></td>
+                        <td>$64</td>
+                        <td class="fw-bold">124</td>
+                        <td>$5,828</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
-
 </div>
+
+
+
+
+
+
+
+
+

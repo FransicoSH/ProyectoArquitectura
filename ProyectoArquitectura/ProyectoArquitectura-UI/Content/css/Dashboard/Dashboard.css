@@ -4,8 +4,21 @@ html, body {
     margin: 0;
 }
 
-header {
-    margin-bottom:15px;
+.info-card h6 {
+    font-size: 28px!important;
+    color: #012970;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+}
+
+.fw-bold {
+    font-weight: 700 !important;
+}
+
+
+.card {
+
 }
 
 /*Login Signup Page*/

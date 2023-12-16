@@ -164,5 +164,37 @@
     <FunctionImportMapping FunctionImportName="Sp_ModidicarTipoMembresia" FunctionName="GimnasioOlympusModel.Store.Sp_ModidicarTipoMembresia" />
     <FunctionImportMapping FunctionImportName="sp_AutenticarUsuario" FunctionName="GimnasioOlympusModel.Store.sp_AutenticarUsuario" />
     <FunctionImportMapping FunctionImportName="Sp_GenerarUsername" FunctionName="GimnasioOlympusModel.Store.Sp_GenerarUsername" />
+    <EntitySetMapping Name="PersonaMetricas">
+      <EntityTypeMapping TypeName="GimnasioOlympusModel.PersonaMetricas">
+        <MappingFragment StoreEntitySet="PersonaMetricas">
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="Metrica" ColumnName="Metrica" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsuariosMetricas">
+      <EntityTypeMapping TypeName="GimnasioOlympusModel.UsuariosMetricas">
+        <MappingFragment StoreEntitySet="UsuariosMetricas">
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="Metrica" ColumnName="Metrica" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoMembresiaIDMetricas">
+      <EntityTypeMapping TypeName="GimnasioOlympusModel.TipoMembresiaIDMetricas">
+        <MappingFragment StoreEntitySet="TipoMembresiaIDMetricas">
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="Metrica" ColumnName="Metrica" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Metricas">
+      <EntityTypeMapping TypeName="GimnasioOlympusModel.Metricas">
+        <MappingFragment StoreEntitySet="Metricas">
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="Metrica" ColumnName="Metrica" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

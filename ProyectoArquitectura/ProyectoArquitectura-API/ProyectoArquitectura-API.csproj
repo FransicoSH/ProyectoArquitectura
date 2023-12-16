@@ -164,6 +164,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Content\MetricasController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\GenerarUsuarioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -172,6 +173,7 @@
     <Compile Include="Controllers\PersonasController.cs" />
     <Compile Include="Controllers\PersonaViewsController.cs" />
     <Compile Include="Controllers\TipoEstadosController.cs" />
+    <Compile Include="Controllers\TipoMembresiasController.cs" />
     <Compile Include="Controllers\TipoRolsController.cs" />
     <Compile Include="Controllers\UsuariosViewsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -201,10 +203,16 @@
     <Compile Include="Models\MenbresiasUsuario.cs">
       <DependentUpon>GimnasioOlympusModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Metricas.cs">
+      <DependentUpon>GimnasioOlympusModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Persona.cs">
       <DependentUpon>GimnasioOlympusModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PersonaDetalleCuerpoView.cs">
+      <DependentUpon>GimnasioOlympusModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PersonaMetricas.cs">
       <DependentUpon>GimnasioOlympusModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PersonasSinUsuario.cs">
@@ -225,6 +233,9 @@
     <Compile Include="Models\TipoMembresia.cs">
       <DependentUpon>GimnasioOlympusModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TipoMembresiaIDMetricas.cs">
+      <DependentUpon>GimnasioOlympusModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TipoRol.cs">
       <DependentUpon>GimnasioOlympusModel.tt</DependentUpon>
     </Compile>
@@ -232,6 +243,9 @@
       <DependentUpon>GimnasioOlympusModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UsuarioPersona.cs">
+      <DependentUpon>GimnasioOlympusModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UsuariosMetricas.cs">
       <DependentUpon>GimnasioOlympusModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UsuariosView.cs">

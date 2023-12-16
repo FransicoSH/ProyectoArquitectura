@@ -40,6 +40,10 @@ namespace ProyectoArquitectura_API.Models
         public virtual DbSet<PersonasSinUsuario> PersonasSinUsuarios { get; set; }
         public virtual DbSet<PersonaView> PersonaViews { get; set; }
         public virtual DbSet<UsuariosView> UsuariosViews { get; set; }
+        public virtual DbSet<PersonaMetricas> PersonaMetricas { get; set; }
+        public virtual DbSet<UsuariosMetricas> UsuariosMetricas { get; set; }
+        public virtual DbSet<TipoMembresiaIDMetricas> TipoMembresiaIDMetricas { get; set; }
+        public virtual DbSet<Metricas> Metricas { get; set; }
     
         public virtual int Sp_ActualizarCliente(Nullable<int> idCliente, string numemeroTelefono, string direccion, Nullable<decimal> peso, Nullable<decimal> altura, Nullable<decimal> porcentajeMasaMuscular, Nullable<decimal> porcentajeGrasaCorporal, ObjectParameter mensaje)
         {
