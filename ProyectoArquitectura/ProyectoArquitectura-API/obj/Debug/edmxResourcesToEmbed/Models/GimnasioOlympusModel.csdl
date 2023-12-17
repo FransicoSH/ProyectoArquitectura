@@ -101,6 +101,8 @@
     <EntitySet Name="UsuariosMetricas" EntityType="GimnasioOlympusModel.UsuariosMetricas" />
     <EntitySet Name="TipoMembresiaIDMetricas" EntityType="GimnasioOlympusModel.TipoMembresiaIDMetricas" />
     <EntitySet Name="Metricas" EntityType="GimnasioOlympusModel.Metricas" />
+    <EntitySet Name="membresiaview" EntityType="GimnasioOlympusModel.membresiaview" />
+    <EntitySet Name="Menbresias_Metricas" EntityType="GimnasioOlympusModel.Menbresias_Metricas" />
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -302,5 +304,31 @@
     </Key>
     <Property Name="Metrica" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="cantidad" Type="Int32" />
+  </EntityType>
+  <EntityType Name="membresiaview">
+    <Key>
+      <PropertyRef Name="MenbresiaID" />
+      <PropertyRef Name="Fullname" />
+      <PropertyRef Name="Nombre" />
+      <PropertyRef Name="Estado" />
+      <PropertyRef Name="FechaAdquisicion" />
+      <PropertyRef Name="FechaVencimiento" />
+    </Key>
+    <Property Name="MenbresiaID" Type="Int32" Nullable="false" />
+    <Property Name="Fullname" Type="String" Nullable="false" MaxLength="452" FixedLength="false" Unicode="false" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Estado" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="FechaAdquisicion" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="FechaVencimiento" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="Menbresias_Metricas">
+    <Key>
+      <PropertyRef Name="Nombre" />
+      <PropertyRef Name="Precio" />
+    </Key>
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Precio" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="CantidadAdquisiciones" Type="Int32" />
+    <Property Name="TotalVenta" Type="Decimal" Precision="21" Scale="2" />
   </EntityType>
 </Schema>

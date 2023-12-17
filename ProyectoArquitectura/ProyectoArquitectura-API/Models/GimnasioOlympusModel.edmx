@@ -173,6 +173,36 @@ warning 6002: The table/view 'GimnasioOlympus.General.PersonaView' does not have
           <Property Name="NumeroTelefono" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'GimnasioOlympus.membresia.membresiaview' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="membresiaview">
+          <Key>
+            <PropertyRef Name="MenbresiaID" />
+            <PropertyRef Name="Fullname" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="Estado" />
+            <PropertyRef Name="FechaAdquisicion" />
+            <PropertyRef Name="FechaVencimiento" />
+          </Key>
+          <Property Name="MenbresiaID" Type="int" Nullable="false" />
+          <Property Name="Fullname" Type="varchar" MaxLength="452" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FechaAdquisicion" Type="date" Nullable="false" />
+          <Property Name="FechaVencimiento" Type="date" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'GimnasioOlympus.membresia.Menbresias_Metricas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Menbresias_Metricas">
+          <Key>
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="Precio" />
+          </Key>
+          <Property Name="Nombre" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Precio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="CantidadAdquisiciones" Type="int" />
+          <Property Name="TotalVenta" Type="decimal" Precision="21" Scale="2" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'GimnasioOlympus.membresia.TipoMembresiaIDMetricas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="TipoMembresiaIDMetricas">
           <Key>
@@ -355,6 +385,24 @@ warning 6002: The table/view 'GimnasioOlympus.seguridad.UsuariosView' does not h
     [PersonaView].[NumeroTelefono] AS [NumeroTelefono]
     FROM [General].[PersonaView] AS [PersonaView]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="membresiaview" EntityType="Self.membresiaview" store:Type="Views" store:Schema="membresia">
+            <DefiningQuery>SELECT 
+    [membresiaview].[MenbresiaID] AS [MenbresiaID], 
+    [membresiaview].[Fullname] AS [Fullname], 
+    [membresiaview].[Nombre] AS [Nombre], 
+    [membresiaview].[Estado] AS [Estado], 
+    [membresiaview].[FechaAdquisicion] AS [FechaAdquisicion], 
+    [membresiaview].[FechaVencimiento] AS [FechaVencimiento]
+    FROM [membresia].[membresiaview] AS [membresiaview]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Menbresias_Metricas" EntityType="Self.Menbresias_Metricas" store:Type="Views" store:Schema="membresia">
+            <DefiningQuery>SELECT 
+    [Menbresias_Metricas].[Nombre] AS [Nombre], 
+    [Menbresias_Metricas].[Precio] AS [Precio], 
+    [Menbresias_Metricas].[CantidadAdquisiciones] AS [CantidadAdquisiciones], 
+    [Menbresias_Metricas].[TotalVenta] AS [TotalVenta]
+    FROM [membresia].[Menbresias_Metricas] AS [Menbresias_Metricas]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="TipoMembresiaIDMetricas" EntityType="Self.TipoMembresiaIDMetricas" store:Type="Views" store:Schema="membresia">
             <DefiningQuery>SELECT 
     [TipoMembresiaIDMetricas].[Metrica] AS [Metrica], 
@@ -485,6 +533,8 @@ warning 6002: The table/view 'GimnasioOlympus.seguridad.UsuariosView' does not h
           <EntitySet Name="UsuariosMetricas" EntityType="GimnasioOlympusModel.UsuariosMetricas" />
           <EntitySet Name="TipoMembresiaIDMetricas" EntityType="GimnasioOlympusModel.TipoMembresiaIDMetricas" />
           <EntitySet Name="Metricas" EntityType="GimnasioOlympusModel.Metricas" />
+          <EntitySet Name="membresiaview" EntityType="GimnasioOlympusModel.membresiaview" />
+          <EntitySet Name="Menbresias_Metricas" EntityType="GimnasioOlympusModel.Menbresias_Metricas" />
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -687,6 +737,32 @@ warning 6002: The table/view 'GimnasioOlympus.seguridad.UsuariosView' does not h
           <Property Name="Metrica" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="cantidad" Type="Int32" />
         </EntityType>
+        <EntityType Name="membresiaview">
+          <Key>
+            <PropertyRef Name="MenbresiaID" />
+            <PropertyRef Name="Fullname" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="Estado" />
+            <PropertyRef Name="FechaAdquisicion" />
+            <PropertyRef Name="FechaVencimiento" />
+          </Key>
+          <Property Name="MenbresiaID" Type="Int32" Nullable="false" />
+          <Property Name="Fullname" Type="String" Nullable="false" MaxLength="452" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FechaAdquisicion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaVencimiento" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="Menbresias_Metricas">
+          <Key>
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="Precio" />
+          </Key>
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Precio" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="CantidadAdquisiciones" Type="Int32" />
+          <Property Name="TotalVenta" Type="Decimal" Precision="21" Scale="2" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -885,6 +961,28 @@ warning 6002: The table/view 'GimnasioOlympus.seguridad.UsuariosView' does not h
               <MappingFragment StoreEntitySet="Metricas">
                 <ScalarProperty Name="cantidad" ColumnName="cantidad" />
                 <ScalarProperty Name="Metrica" ColumnName="Metrica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="membresiaview">
+            <EntityTypeMapping TypeName="GimnasioOlympusModel.membresiaview">
+              <MappingFragment StoreEntitySet="membresiaview">
+                <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
+                <ScalarProperty Name="FechaAdquisicion" ColumnName="FechaAdquisicion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="MenbresiaID" ColumnName="MenbresiaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menbresias_Metricas">
+            <EntityTypeMapping TypeName="GimnasioOlympusModel.Menbresias_Metricas">
+              <MappingFragment StoreEntitySet="Menbresias_Metricas">
+                <ScalarProperty Name="TotalVenta" ColumnName="TotalVenta" />
+                <ScalarProperty Name="CantidadAdquisiciones" ColumnName="CantidadAdquisiciones" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

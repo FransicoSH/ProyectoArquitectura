@@ -1,0 +1,218 @@
+﻿
+@{
+    ViewBag.Title = "CrearCliente";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <link href="~/Content/css/Gestiones/Formularios.css" rel="stylesheet" />
+    <link href="~/Content/css/Gestiones/General.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+</head>
+
+<body>
+
+    @if (TempData["MensajeError"] != null)
+    {
+        <script>
+            $(document).ready(function () {
+                $('#ErrorModal').modal('show');
+            });
+
+        </script>
+    }
+
+
+    <div class="Contenedor-From">
+        @using (Html.BeginForm("Crear_MembresiaUsuario", "GestionMenbresiasUsuarios", FormMethod.Post, new { @class = "Form-Main needs-validation", @id = "FormAgregarMembresiaUsuario", novalidate = "true" }))
+        {
+            <h2>Asignar membresia a usuario</h2>
+            <form id="FormAgregar">
+                <div class="row  mb-3">
+                    <div class="col-md-3">
+                        <label class="form-label">Membresia</label>
+                        <select class="form-select" aria-label="Default select example" name="TipoMembresiaID" id="TipoMembresiaID">
+                            @if (ViewBag.TipoMembresia != null)
+                            {
+                                foreach (var TipoMembresia in ViewBag.TipoMembresia)
+                                {
+                                    <option value="@TipoMembresia.TipoMembresiaID">
+                                        @TipoMembresia.Nombre
+                                    </option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label id="lbNombre" class="form-label">Seleccione un usuario </label>
+                        <div class=" contenerdo-Buscar mb-3 ">
+                            <button type="button" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" data-bs-toggle="modal" data-bs-target="#ClienteUsuariosModal" id="AgregarClienteBTN"> <i class="material-icons">add</i>  </button>
+                            <input type="text" class="form-control form-check" style="width:50px;" name="UsuarioID" id="UsuarioID" readonly required>
+                            <input type="text" class="form-control form-check" name="UserName" id="UserName" required readonly>
+                            <div class="invalid-feedback">
+                                Seleccione un cliente
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row  mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Fecha adquisicion </label>
+                        <div class="input-group ">
+                            <span class="input-group-text" id="basic-addon3"></span>
+                            <input type="date" class="form-control" name="FechaAdquisicion" id="FechaAdquisicion" step="any" required>
+                            <div class="invalid-feedback">
+                                Ingrese una fecha valida.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Fecha Vencimiento</label>
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon3"></span>
+                            <input type="date" class="form-control" name="FechaVencimiento" step="any" id="FechaVencimiento" required>
+                            <div class="invalid-feedback">
+                                Ingrese una fecha valida.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row  mb-4  Btn-content">
+                    <div class="col-md-6 justify-content-end ">
+                        <button type="submit" class="btn btn-primary btnGuardar">Guardar</button>
+                        <button type="button" class="btn btn-danger btnGuardar" onclick="redireccionar()">Cancelar</button>
+                    </div>
+                </div>
+            </form>
+        }
+    </div>
+
+
+    <!-- Button trigger modal -->
+    <!-- Modal -->
+    <div class="modal fade" id="ClienteUsuariosModal" tabindex="-1" aria-labelledby="ClienteUsuariosModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Seleccione un cliente</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-container">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>UsuarioID</th>
+                                    <th>UserName</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Filas de datos -->
+                                @foreach (var personas in ViewBag.respuesta)
+                                {
+                                    <tr>
+                                        <td>@personas.UsuarioID</td>
+                                        <td>@personas.UserName</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" id="AgregarCliente" class="btn btn-primary">Agregar cliente</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ErrorModal" tabindex="-1" aria-labelledby="Eliminar cliente" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><i class="fa-solid fa-triangle-exclamation"></i> Alerta</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="">
+                        <p id="ErrorMSG"> @TempData["MensajeError"]</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Html.Raw("<script src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js' integrity='sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r' crossorigin='anonymous'></script>")
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <script src="~/Content/javaScript/views/CrearMembresiaUsuario.js"></script>
+    <script src="https://kit.fontawesome.com/49ba607fd0.js" crossorigin="anonymous"></script>
+    <script>
+    function redireccionar() {
+              window.location.href = '@Url.Action("VistaMenbresiasUsuarios", "GestionMenbresiasUsuarios")';
+     }
+     $('.table').DataTable({
+     });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var form = document.getElementById('FormAgregarMembresiaUsuario');
+
+            form.addEventListener('submit', function (event) {
+                var FechaVencimiento = document.getElementById('FechaVencimiento');
+                var FechaAdquisicion = document.getElementById('FechaAdquisicion');
+                var UserName = document.getElementById('UserName');
+                var errorMSG = document.getElementById('ErrorMSG');
+                if (FechaAdquisicion.value.trim() === '') {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    form.classList.add('was-validated');
+                }
+                    
+                if (FechaVencimiento.value.trim() === '') {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    form.classList.add('was-validated');
+                }
+
+                if (UserName.value.trim() === '') {
+                    event.preventDefault();
+                    event.stopPropagation();
+               
+                    errorMSG.textContent = "Seleccione un cliente";
+                    $('#ErrorModal').modal('show');
+                    form.classList.add('was-validated');
+                }
+
+                if (FechaAdquisicion.value > FechaVencimiento.value) {
+                    
+                    errorMSG.textContent = "La fecha de vencimiento no puede ser menor que la fecha de adquisición.";
+                    $('#ErrorModal').modal('show');
+                    return false;
+                }
+
+
+
+            });
+        });
+    </script>
+
+
+</body>
+</html>
+

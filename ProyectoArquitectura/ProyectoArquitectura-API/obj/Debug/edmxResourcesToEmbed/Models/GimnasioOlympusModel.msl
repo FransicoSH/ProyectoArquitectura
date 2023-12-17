@@ -196,5 +196,27 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="membresiaview">
+      <EntityTypeMapping TypeName="GimnasioOlympusModel.membresiaview">
+        <MappingFragment StoreEntitySet="membresiaview">
+          <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
+          <ScalarProperty Name="FechaAdquisicion" ColumnName="FechaAdquisicion" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+          <ScalarProperty Name="MenbresiaID" ColumnName="MenbresiaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Menbresias_Metricas">
+      <EntityTypeMapping TypeName="GimnasioOlympusModel.Menbresias_Metricas">
+        <MappingFragment StoreEntitySet="Menbresias_Metricas">
+          <ScalarProperty Name="TotalVenta" ColumnName="TotalVenta" />
+          <ScalarProperty Name="CantidadAdquisiciones" ColumnName="CantidadAdquisiciones" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -168,6 +168,36 @@ warning 6002: The table/view 'GimnasioOlympus.General.PersonaView' does not have
     <Property Name="NumeroTelefono" Type="varchar" MaxLength="20" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
+warning 6002: The table/view 'GimnasioOlympus.membresia.membresiaview' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="membresiaview">
+    <Key>
+      <PropertyRef Name="MenbresiaID" />
+      <PropertyRef Name="Fullname" />
+      <PropertyRef Name="Nombre" />
+      <PropertyRef Name="Estado" />
+      <PropertyRef Name="FechaAdquisicion" />
+      <PropertyRef Name="FechaVencimiento" />
+    </Key>
+    <Property Name="MenbresiaID" Type="int" Nullable="false" />
+    <Property Name="Fullname" Type="varchar" MaxLength="452" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Estado" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="FechaAdquisicion" Type="date" Nullable="false" />
+    <Property Name="FechaVencimiento" Type="date" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'GimnasioOlympus.membresia.Menbresias_Metricas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Menbresias_Metricas">
+    <Key>
+      <PropertyRef Name="Nombre" />
+      <PropertyRef Name="Precio" />
+    </Key>
+    <Property Name="Nombre" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Precio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="CantidadAdquisiciones" Type="int" />
+    <Property Name="TotalVenta" Type="decimal" Precision="21" Scale="2" />
+  </EntityType>
+  <!--Errors Found During Generation:
 warning 6002: The table/view 'GimnasioOlympus.membresia.TipoMembresiaIDMetricas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="TipoMembresiaIDMetricas">
     <Key>
@@ -349,6 +379,24 @@ warning 6002: The table/view 'GimnasioOlympus.seguridad.UsuariosView' does not h
     [PersonaView].[CorreoElectronico] AS [CorreoElectronico], 
     [PersonaView].[NumeroTelefono] AS [NumeroTelefono]
     FROM [General].[PersonaView] AS [PersonaView]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="membresiaview" EntityType="Self.membresiaview" store:Type="Views" store:Schema="membresia">
+      <DefiningQuery>SELECT 
+    [membresiaview].[MenbresiaID] AS [MenbresiaID], 
+    [membresiaview].[Fullname] AS [Fullname], 
+    [membresiaview].[Nombre] AS [Nombre], 
+    [membresiaview].[Estado] AS [Estado], 
+    [membresiaview].[FechaAdquisicion] AS [FechaAdquisicion], 
+    [membresiaview].[FechaVencimiento] AS [FechaVencimiento]
+    FROM [membresia].[membresiaview] AS [membresiaview]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Menbresias_Metricas" EntityType="Self.Menbresias_Metricas" store:Type="Views" store:Schema="membresia">
+      <DefiningQuery>SELECT 
+    [Menbresias_Metricas].[Nombre] AS [Nombre], 
+    [Menbresias_Metricas].[Precio] AS [Precio], 
+    [Menbresias_Metricas].[CantidadAdquisiciones] AS [CantidadAdquisiciones], 
+    [Menbresias_Metricas].[TotalVenta] AS [TotalVenta]
+    FROM [membresia].[Menbresias_Metricas] AS [Menbresias_Metricas]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="TipoMembresiaIDMetricas" EntityType="Self.TipoMembresiaIDMetricas" store:Type="Views" store:Schema="membresia">
       <DefiningQuery>SELECT 

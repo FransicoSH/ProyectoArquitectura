@@ -164,11 +164,15 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Content\MetricasController.cs" />
+    <Compile Include="Controllers\MembresiasUsuariosUtilsController.cs" />
+    <Compile Include="Controllers\MetricasController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\GenerarUsuarioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\membresiaviewsController.cs" />
+    <Compile Include="Controllers\MenbresiasController.cs" />
+    <Compile Include="Controllers\Menbresias_MetricasController.cs" />
     <Compile Include="Controllers\PersonaDetalleCuerpoViewsController.cs" />
     <Compile Include="Controllers\PersonasController.cs" />
     <Compile Include="Controllers\PersonaViewsController.cs" />
@@ -197,10 +201,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GimnasioOlympusModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\membresiaview.cs">
+      <DependentUpon>GimnasioOlympusModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Menbresia.cs">
       <DependentUpon>GimnasioOlympusModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MenbresiasUsuario.cs">
+      <DependentUpon>GimnasioOlympusModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Menbresias_Metricas.cs">
       <DependentUpon>GimnasioOlympusModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Metricas.cs">

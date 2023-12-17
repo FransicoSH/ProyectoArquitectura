@@ -47,6 +47,7 @@ namespace ProyectoArquitectura_UI.Controllers
             }
 
             Session["User"] = null;
+            TempData["LoginFail"] = "Usuario o contraseña inválidas";
             return RedirectToAction("Login", "inicioSesion");
 
         }

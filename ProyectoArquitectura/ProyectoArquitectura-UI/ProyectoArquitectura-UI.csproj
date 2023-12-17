@@ -154,11 +154,15 @@
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\GestionClientesController.cs" />
     <Compile Include="Controllers\GestionMenbresiasController.cs" />
+    <Compile Include="Controllers\GestionMenbresiasUsuariosController.cs" />
     <Compile Include="Controllers\GestionUsuariosController.cs" />
     <Compile Include="Controllers\inicioSesionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Membresia.cs" />
+    <Compile Include="Models\MembresiasView.cs" />
+    <Compile Include="Models\Menbresias_Metricas.cs" />
     <Compile Include="Models\Metricas.cs" />
     <Compile Include="Models\PersonaDetalleCuerpo.cs" />
     <Compile Include="Models\cliente.cs" />
@@ -183,8 +187,10 @@
     <Content Include="Content\css\inicioSesion\Login.css" />
     <Content Include="Content\javaScript\views\Clientes.js" />
     <Content Include="Content\javaScript\views\Editar.js" />
+    <Content Include="Content\javaScript\views\MembresiasUsuarios.js" />
     <Content Include="Content\javaScript\views\Menbresias.js" />
     <Content Include="Content\javaScript\views\Usuarios.js" />
+    <Content Include="Content\javaScript\views\CrearMembresiaUsuario.js" />
     <Content Include="Content\javaScript\views\UsuariosCrear.js" />
     <Content Include="Content\Public\img\usuario.png" />
     <Content Include="favicon.ico" />
@@ -224,6 +230,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="packages.config" />
     <Content Include="Views\GestionMenbresias\VistaMenbresias.cshtml" />
+    <Content Include="Views\GestionMenbresiasUsuarios\VistaMenbresiasUsuarios.cshtml" />
+    <Content Include="Views\GestionMenbresiasUsuarios\CrearMembresiaUsuario.cshtml" />
+    <Content Include="Views\GestionMenbresiasUsuarios\EditarMembresiaUsuario.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

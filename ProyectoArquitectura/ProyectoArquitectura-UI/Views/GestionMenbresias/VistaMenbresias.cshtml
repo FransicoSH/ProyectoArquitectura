@@ -1,0 +1,205 @@
+﻿@section head {
+    <link href="~/Content/css/Gestiones/Membresias/Menbresias.css" rel="stylesheet" />
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Gestiones de Membresía</h2>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#CrearMenbresiaModal">
+                    Crear
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        @foreach (var Menbresia in ViewBag.respuesta)
+        {
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <button type="button" class="btn btn-danger btn-delete" data-id="@Menbresia.TipoMembresiaID" data-toggle="tooltip" data-placement="top" title="Eliminar">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                    <div class="card-body">
+                        <h5 class="card-title">@Menbresia.Nombre </h5>
+                        <p class="card-text">@Menbresia.TipoMembresiaID</p>
+                        <p class="card-text">Monto: @string.Format("{0:C}", Menbresia.Precio) </p>
+                        <p class="card-text">Descripción: @Menbresia.Descripcion</p>
+                        <button type="button" class="btn btn-primary btn-edit" data-id="@Menbresia.TipoMembresiaID" data-toggle="modal" data-target="#membresiaModal">
+                            Editar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Modal de Editar -->
+<div class="modal fade" id="membresiaModal" tabindex="-1" role="dialog" aria-labelledby="membresiaModal" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+        <div class="modal-content modal-dialog modal-xl modal-dialog modal-xl">
+            <div class="modal-header">
+                <h5 class="modal-title" id="membresiaModalLabel">Crear Membresía</h5>
+            </div>
+            <div class="modal-body ">
+                @using (Html.BeginForm("EditarMenbresia", "GestionMenbresias", FormMethod.Post, new { @class = "row g-3" }))
+                {
+                    <form class="row g-3">
+                        <div class="col-md-2">
+                            <label for="inputZip" class="form-label">Numero Membresía</label>
+                            <input type="text" class="form-control" name="TipoMembresiaID" id="tipoMembresiaIDInput">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Nombre</label>
+                            <input type="text" class="form-control" name="Nombre" id="nombreInput" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Precio</label>
+                            <input type="text" class="form-control" onkeydown="filtro()" name="Precio" id="precioInput" required>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-text">Descripcion</span>
+                            <textarea class="form-control" name="Descripcion" id="descripcionInput" required></textarea>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal de crear -->
+<div class="modal fade" id="CrearMenbresiaModal" tabindex="-1" role="dialog" aria-labelledby="membresiaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+        <div class="modal-content modal-dialog modal-xl modal-dialog modal-xl">
+            <div class="modal-header">
+                <h5 class="modal-title" id="membresiaModalLabel">Crear Membresía</h5>
+            </div>
+            <div class="modal-body ">
+                @using (Html.BeginForm("CrearNuevaMenbresia", "GestionMenbresias", FormMethod.Post, new { @class = "row g-3" }))
+                {
+                    <form class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Nombre</label>
+                            <input type="text" class="form-control" name="Nombre" id="Nombre" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Precio</label>
+                            <input type="text" class="form-control" onkeydown="filtro()" name="Precio" id="Precio" required>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-text">Descripcion</span>
+                            <textarea class="form-control" name="Descripcion" id="Descripcion" required></textarea>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Notificaicion -->
+<div class="modal fade" id="NotificacionModal" tabindex="-1" aria-labelledby="Eliminar cliente" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmacion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="mensajeExito">
+                    <p><i class="fa fa-check-circle"></i> @TempData["Mensaje"]</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Error -->
+<div class="modal fade" id="ErrorModal" tabindex="-1" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Excepción</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="mensajeExito">
+                    <p><i class="fa-solid fa-triangle-exclamation"></i> @TempData["MensajeError"]</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal confirmacion -->
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="Eliminar cliente" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estás seguro de que deseas eliminar la selección de membresia?</p>
+                <p>Detalles:</p>
+                <p>Numero de membresia:</p>
+                <p id="idMembresia"></p>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="confirmDelete">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="~/Content/javaScript/views/Menbresias.js"></script>
+<script>
+    function filtro() {
+        var tecla = event.key;
+        if (!/^\d|[\.,e]$/.test(tecla) && !event.ctrlKey && !event.metaKey) {
+            event.preventDefault();
+        }
+    }
+</script>
+@if (TempData["Mensaje"] != null)
+{
+    <script>
+        $(document).ready(function () {
+            $('#NotificacionModal').modal('show');
+        });
+
+    </script>
+}
+
+
+@if (TempData["MensajeError"] != null)
+{
+    <script>
+        $(document).ready(function () {
+            $('#ErrorModal').modal('show');
+        });
+
+    </script>
+}
+

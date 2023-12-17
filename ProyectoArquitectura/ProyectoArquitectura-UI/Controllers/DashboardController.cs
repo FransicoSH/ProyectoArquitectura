@@ -25,13 +25,21 @@ namespace ProyectoArquitectura_UI.Controllers
 
             var request = new RestRequest("/api/Metricas", Method.Get);
             var response = client.Execute(request);
-            if (response.IsSuccessful)
+
+
+            request = new RestRequest("/api/Menbresias_Metricas", Method.Get);
+            var responseMenbresias = client.Execute(request);
+
+            if (response.IsSuccessful && responseMenbresias.IsSuccessful)
             {
                 string contenido = response.Content;
                 List<Metricas> respuesta = JsonConvert.DeserializeObject<List<Metricas>>(contenido);
+                contenido = responseMenbresias.Content;
+                List<Menbresias_Metricas> respuestaMembresias = JsonConvert.DeserializeObject < List <Menbresias_Metricas>>(contenido);
                 ViewBag.Usurios = respuesta[0];
                 ViewBag.Clientes = respuesta[1];
                 ViewBag.Membresia = respuesta[2];
+                ViewBag.ListMembresia = respuestaMembresias;
             }
 
             return View();
