@@ -107,9 +107,9 @@ namespace ProyectoArquitectura_UI.Controllers
                 }
                 else
                 {
-                    TempData["MensajeError"] = "No existe el indentificador";
+                    TempData["MensajeError"] = resultado;
                 }
-                return RedirectToAction("EditarClientes", "GestionClientes");
+                return RedirectToAction("VistaClientes", "GestionClientes");
             }
             else
             {
