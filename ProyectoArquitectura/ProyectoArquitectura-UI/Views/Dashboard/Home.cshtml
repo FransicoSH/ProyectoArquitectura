@@ -79,7 +79,7 @@
         </div>
 
         <div class="card-body pb-0">
-            <h5 class="card-title">Top Selling <span>| Today</span></h5>
+            <h5 class="card-title">Ventas <span>| Membresia</span></h5>
 
             <table class="table table-borderless">
                 <thead>
@@ -91,12 +91,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><a href="#" class=" fw-bold">Ut inventore ipsa voluptas nulla</a></td>
-                        <td>$64</td>
-                        <td class="fw-bold">124</td>
-                        <td>$5,828</td>
-                    </tr>
+                    @foreach (var menbresiasM in ViewBag.ListMembresia)
+                    {
+                        <tr>
+                            <td><a href="#" class=" fw-bold">@menbresiasM.Nombre</a></td>
+                            <td>@string.Format("{0:C}", menbresiasM.Precio)</td>
+                            <td class="fw-bold">@menbresiasM.CantidadAdquisiciones</td>
+                            <td>@string.Format("{0:C}", menbresiasM.TotalVenta)</td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
