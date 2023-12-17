@@ -26,6 +26,13 @@ namespace ProyectoArquitectura_UI.Controllers
                 return View();
         }
 
+
+        public ActionResult CerrarSesion()
+        {
+            Session["User"] = null;
+            return RedirectToAction("Login", "inicioSesion");
+        }
+             
         [HttpPost]
         public ActionResult IniciarSesion(Usuario objUsuario)
         {
@@ -51,6 +58,9 @@ namespace ProyectoArquitectura_UI.Controllers
             return RedirectToAction("Login", "inicioSesion");
 
         }
+
+
+        
 
 
 

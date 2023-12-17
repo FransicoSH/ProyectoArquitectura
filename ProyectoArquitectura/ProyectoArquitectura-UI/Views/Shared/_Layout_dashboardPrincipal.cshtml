@@ -27,15 +27,14 @@
                         <img src="~/Content/Public/img/usuario.png" alt="merkery_logo" class="hidden-xs hidden-sm">
                         <img src="~/Content/Public/img/usuario.png" alt="merkery_logo" class="visible-xs visible-sm circle-logo">
                     </a>
-                </div>           
+                </div>
                 <div class="navi">
                     <ul>
-                        <li class="active"><a href="@Url.Action("Home", "Dashboard")"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Home</span></a></li>
+                        <li><a href="@Url.Action("Home", "Dashboard")" ><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Home</span></a></li>
                         <li><a href="@Url.Action("VistaMenbresias", "GestionMenbresias")"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Gestion de Membresias</span></a></li>
                         <li><a href="@Url.Action("VistaClientes", "GestionClientes")"><i class="fa fa-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Gestion de Clientes</span></a></li>
                         <li><a href="@Url.Action("VistaUsuarios", "GestionUsuarios")"><i class="fa fa-users" style="color: #3886fe;" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Gestion de Usuarios</span></a></li>
-                        <li class="statistics-item"><a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Statistics</span></a></li>
-                        <li><a href="#"><i class="fa fa-sign-out" style="--fa-primary-color: #156bfe; --fa-secondary-color: #156bfe;"></i><span class="hidden-xs hidden-sm">Cerrar sesion</span></a></li>
+                        <li><a href="@Url.Action("CerrarSesion", "inicioSesion")" ><i class="fa fa-sign-out" style="--fa-primary-color: #156bfe; --fa-secondary-color: #156bfe;"></i><span class="hidden-xs hidden-sm">Cerrar sesion</span></a></li>
                     </ul>
                 </div>
             </div>
@@ -73,6 +72,30 @@
         </div>
 
     </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+ 
+
+    <script>
+        $(document).ready(function () {
+            // Obtener la URL actual
+            var currentUrl = window.location.href;
+          
+            // Iterar sobre los elementos del menú
+            $('.navi ul li a').each(function () {
+                // Obtener la URL del enlace actual en el bucle
+                var linkUrl = $(this).attr('href');
+
+                // Comparar la URL actual con la URL del enlace
+                if (currentUrl.indexOf(linkUrl) !== -1) {
+                    // Si la URL actual contiene la URL del enlace, agregar la clase 'active'
+                    $(this).closest('li').addClass('active');
+                }
+            });
+        });
+
+    </script>
 </body>
 
 
